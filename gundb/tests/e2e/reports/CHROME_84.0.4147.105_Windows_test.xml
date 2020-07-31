@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="1">
+
+  <testsuite name="test"
+    errors="0" failures="1" hostname="" id="" package="test" skipped="1"
+    tests="1" time="6.374" timestamp="">
+  
+    <testcase name="default e2e tests" classname="test" time="6.374" assertions="2">
+
+      <failure message="Testing if element &lt;.hello&gt; is present in 5000ms - expected &#34;is present&#34; but got: &#34;not present&#34; (5150ms)">    at Object.default e2e tests (C:\Users\11494\Desktop\实训\gundb\gundb\tests\e2e\specs\test.js:9:15)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)</failure>
+
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+    
+    <testcase
+      name="example e2e test using a custom command" classname="test">
+      <skipped />
+    </testcase>
+    
+  
+  </testsuite>
+</testsuites>

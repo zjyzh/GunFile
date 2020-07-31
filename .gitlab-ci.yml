@@ -1,0 +1,16 @@
+test:
+  stage: test
+  image: node:14.5.0
+  cache:
+    paths:
+      - gundb/node_modules/
+  script:
+  - cd gundb
+  - sed -i 's/http:\/\/archive.ubuntu.com\/ubuntu\//http:\/\/mirrors.163.com\/ubuntu\//g' /etc/apt/sources.list
+  - npm config set "chromedriver_cdnurl" "https://npm.taobao.org/mirrors/chromedriver"
+  - npm config set sass-binary-site http://npm.taobao.org/mirrors/node-sass
+  - npm config set registry http://registry.npm.taobao.org
+  - npm install
+  - npm run lint
+  - npm run test:unit
+
