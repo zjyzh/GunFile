@@ -62,3 +62,4 @@ npm start
 　　cp hooks/* .git/hooks/
 ```
 ## 具体更多细节可以看Wiki开发文档
+ [《码的全队GunDB去中心化分享平台项目》](https://www.yuque.com/books/share/fd666b8b-570d-499e-bcfa-2c7eede5cff0?#)
