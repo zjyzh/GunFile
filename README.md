@@ -15,19 +15,19 @@
 **前端技术主要使用Vue框架进行实现，将Vue与Gun进行绑定，基于此进行应用开发**
 
 ## 环境要求
+- 你需要安装 [vue](https://cn.vuejs.org/) 和 [npm](https://www.npmjs.com/)
 
 ### 服务器现在暂且不稳定而且带宽不太够，如果进行测试建议在本地搭建服务器
 
-在项目的根目录（注意该目录没有package.json文件）
+在项目的根目录
 执行
 ```
-npm install gun
+cd gundb
+cnpm install gun
 cd node_modules/gun
-npm start
+cnpm start
 ```
 服务默认开启在本地的8765端口，可以通过访问浏览器`localhost:8765`来进行访问
-
-你需要安装 [vue](https://cn.vuejs.org/) 和 [npm](https://www.npmjs.com/)
 
 
 ## 快速开始
