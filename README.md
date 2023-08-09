@@ -146,8 +146,250 @@ cp hooks/* .git/hooks/
 
 ### （三）说明书
 
-- [普通用户说明书](./用户说明书.md)
-- [开发者说明书](./开发者说明书.md)
+## 一、引言
+
+  如果您只是想通过Gun file进行文件传输工作，而不想了解他的底层开发原理，那么你只需要阅读此说明书。如果您是开发者，想了解软件底层构建原理，那么您除了阅读此说明书外，我们建议您额外阅读[开发者使用说明书](./开发者说明书.md)。在此用户说明书中将会为您详细介绍如何使用此软件，无论您是想通过局域网传输文件，还是在广域网传输文件，通过查阅此说明书，您可以无障碍使用此平台达到您的目的。
+
+## 二、软件的概述
+
+### （一）软件说明
+
+  分享用户通过网址进入网页后可上传大于等于一份的文件数，文件类型没有限制，单份文件大小不超60M，文件超过大小将提示上传失败。选择完要上传完的文件后。如果需要设置文件提取密码，可以选择有密码，并在对应位置输入一串密码，密码支持字符和数字，一旦选择有密码，在提取文件时候需要输入正确密码，否则将不能下载或者预览文件。用户可为文件选择下载次数，下载次数提供1、2、5等五个选择，如果在提取文件时候超过文件下载次数，将不能下载。用户也可为为文件选择有效日期，文件有效日期提供1天、3天、5天等5个选项，选择有效日期后，超过有效日期的文件将无法进行预览或者下载。用户点击“确认上传”按钮，平台将会自动生成链接，点击复制按钮就可以复制链接，通过此链接可以进入到下载界面，如果密码输入正确密码就可以对文件进行预览和下载操作，目前在线预览只支持图片和PDF文件，且文件大小不超过10M。
+
+## 三、基本操作及功能介绍
+
+### （一）网页端上传文件
+
+#### 1.点击选取文件按钮，弹出选择文件框，在本地选取想要上传的文件，待提示文件上传成功后，选择下一个要上传的文件
+![上传文件gif.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596081609835-1794cc25-a96c-4e0e-a9dc-1652cb4345e6.gif#align=left&display=inline&height=928&originHeight=928&originWidth=1812&size=1035080&status=done&style=none&width=1812)
+
+#### 2.上传文件大小限制在60M内，超过大小限制将平台将会提示文件无法上传
+
+![大文件上传.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596081825822-e50f6814-7e58-4adb-92bf-0c9b2735b8d9.gif#align=left&display=inline&height=934&originHeight=934&originWidth=1818&size=1155966&status=done&style=none&width=1818)
+
+#### 3.如果文件选取错误，可将鼠标移动到文件列表中的文件名上，点击右边“移除”按钮，即可将文件移除
+
+![移除文件.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596081948702-7e932290-f9af-40a0-8cd6-695169d42571.gif#align=left&display=inline&height=923&originHeight=923&originWidth=1824&size=2282028&status=done&style=none&width=1824)
+
+#### 4.不允许上传同名文件，如果上传同名文件，系统将会提示“文件已上传”
+
+![同名文件.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596082139750-760c1146-6783-4e53-a081-f5aa238fa382.gif#align=left&display=inline&height=918&originHeight=918&originWidth=1822&size=1031939&status=done&style=none&width=1822)
+
+#### 5.选择文件提取是否需要密码，如果需要设置密码，在密码输入框里面输入密码，如果不需要密码，可以跳过此步骤，当选择输入密码以后，提取文件时候需要首先输入正确的密码
+![输入密码.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596082273988-59ae2219-41ab-4c49-9ae4-1787db614df8.gif#align=left&display=inline&height=928&originHeight=928&originWidth=1815&size=755620&status=done&style=none&width=1815)
+
+#### 6.选择传输的文件下载次数，可分别选择1、2、5、8、10次。默认为1次，点击下拉框可进行更改，超过下载次数将文件将不能下载
+
+![选择.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596082625438-bcbdcd2d-2e85-4c6b-8127-bfe4f49e1db3.gif#align=left&display=inline&height=921&originHeight=921&originWidth=1803&size=719306&status=done&style=none&width=1803)
+
+#### 7.选择传输的文件有效期限制，可分别选择1、3、5、7、10天。默认为1天，点击下拉框可进行更改，超过文件有效日期，将不能不不能对文件下载或者预览
+
+![选择有效日期.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596082642597-1e8de42d-4ec2-4ed7-93b3-0b1c79dbc3bc.gif#align=left&display=inline&height=944&originHeight=944&originWidth=1804&size=751394&status=done&style=none&width=1804)
+
+#### 8.以上设置完毕后点击“确认上传”按钮，页面弹出文件链接
+
+![确认上传文件.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596082686765-c373fd5f-d0d4-4c83-a36f-905f22ac6d07.gif#align=left&display=inline&height=940&originHeight=940&originWidth=1817&size=842732&status=done&style=none&width=1817)
+
+#### 9.点击“复制”按钮可以将此链接分享给其他需要下载或预览此次上传文件的人，可以通过此链接进入网站对文件进下载或预览操作复制链接后点击“关闭”按钮，可以进行下一次上传文件操作
+
+![点击复制关闭按钮.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596082834398-82d4d306-170e-4338-9630-fc0adc85205e.gif#align=left&display=inline&height=930&originHeight=930&originWidth=1821&size=752999&status=done&style=none&width=1821)
+
+#### 10.上传文件全部操作过程
+![完整.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596083944866-a835014d-0db6-49df-ab02-6457dbae0fd5.gif#align=left&display=inline&height=974&originHeight=974&originWidth=1823&size=1804597&status=done&style=none&width=1823)
+
+### （二）网页端对文件进行预览或者下载
+
+#### 1.通过被文件链接访问文件下载界面，若被分享的文件仍在保存期限内且下载次数仍在限制之内，则进入下一步
+
+![进入下载页面.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596082944641-83efffa4-795a-4acd-b904-800f8c3e9852.gif#align=left&display=inline&height=990&originHeight=990&originWidth=1819&size=519802&status=done&style=none&width=1819)
+
+#### 2.若文件提取不需要密码，则直接进入下载界面可对文件进行操作，若提取文件需要密码密码，需要输入正确的密码才可访问下载界面
+
+![密码正确.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596083290323-5df0c6fe-161b-45e9-83c8-055048728448.gif#align=left&display=inline&height=922&originHeight=922&originWidth=1818&size=775563&status=done&style=none&width=1818)
+
+#### 3.鼠标浮动到文件名上面，将会在文件右边出现“预览”按钮，点击按钮，如果符合文件格式符合文件预览格式（PDF或图片）要求且大小不超过10M。即可以对文件进行预览，如果不符合要求，系统将会提示用户“暂不支持此文件预览”
+
+图片预览：
+
+![点击进行图片预览.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596083373252-21d9bce2-3dc1-466f-8b2b-e4610ecee75b.gif#align=left&display=inline&height=940&originHeight=940&originWidth=1824&size=2147611&status=done&style=none&width=1824)
+
+PDF文件预览：
+
+![预览pdf.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596084179236-c8c23231-450d-4f23-92bd-4dae9de32d53.gif#align=left&display=inline&height=945&originHeight=945&originWidth=1820&size=2859045&status=done&style=none&width=1820)
+
+#### 4.满足上述条件后进入下载界面，界面中显示的为被分享的所有文件名，点击文件列表名可以对文件进行下载，默认文件下载到C盘，一旦有文件被下载，文件次数将会减1，之后在同一页面下载其它文件，下载次数不再下降。也就是说，每次打开页面，如果不下载文件，下载次数不变，如果下载了，那么下载次数最多减一，直到您关闭或者刷新页面。这样的设计主要是为了监控多文件下载时候的方便，因为如果给每个文件规定下载次数，界面的信息会变得冗杂和难以管理。
+
+![点击进行下载.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596083302457-520a7b90-f697-4eb8-bae0-a27e803986ec.gif#align=left&display=inline&height=914&originHeight=914&originWidth=1810&size=1010157&status=done&style=none&width=1810)
+
+#### 5.刷新界面或重新访问界面，若文件仍在保存期限内且下载次数仍在限制之内，用户可继续对文件进行操作，如果是超过文件有效期，则提示“文件已过期”，如果是超过下载次数，则提示“文件已达最大下载次数”，并自动跳转到上传界面
+
+![文件已达最大下载次数.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596084526967-3828e3fd-4d5d-430f-8371-9fcee0ae2365.gif#align=left&display=inline&height=988&originHeight=988&originWidth=1818&size=407484&status=done&style=none&width=1818)
+### （三）在客户端进行文件传输
+
+#### 1.安装客户端
+
+#### 2.上传文件的步骤与网页端相差无几，具体可参照[网页端上传文件](#7c21f307)，唯一不同的是：点击“确认上传”按钮后，弹出的对话框中有一个pageID
+
+![客户端图片2.png](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596083498913-bfade717-6ffc-44ce-a728-d3000ab23701.png#align=left&display=inline&height=1249&originHeight=1249&originWidth=1920&size=350873&status=done&style=none&width=1920)
+
+#### 3.要在客户端接收文件，应该打开客户端之后，在页面的左上角点击按钮：去下载
+
+![客户端图片1.png](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596083506429-ea2a574f-582d-49af-860f-9e5f6a9d1b7d.png#align=left&display=inline&height=1080&originHeight=1080&originWidth=1920&size=119003&status=done&style=none&width=1920)
+
+#### 4.跳转到下载界面，在下载界面会要求输入确认上传后的pageID,确认上传后的pageID
+
+![客户端输入链接.png](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596083524572-4eb01213-19f0-43f6-b1d0-b5a49e5adcb8.png#align=left&display=inline&height=885&originHeight=885&originWidth=1100&size=87330&status=done&style=none&width=1100)
+
+#### 5.输入正确的pageID后，如果该文件有密码，那么会要求输入密码，在输入正确的密码后，会提示密码正确，就可以进入下载界面，就能正常地进行下载和预览。
+
+![客户端密码输入.png](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596083550273-8980bf9c-8871-4924-869a-276723e46d13.png#align=left&display=inline&height=924&originHeight=924&originWidth=1159&size=95146&status=done&style=none&width=1159)
+
+#### 6.客户端下载界面对文件进行下载或预览与Web端相同，具体参照网[页端对文件进行下载或预览](https://www.yuque.com/yezhi-hwxhu/kb/ovv0ae/edit#d0f4bb69)
+
+#### 7.菜单栏有开启和关闭服务器的选项，对应开启和关闭本地服务器，想要开启局域网文件分享功能，就必须开启本地服务器后上传文件，然后复制文件链接到另一个客户端上，即可访问文件
+
+![AAAAA.png](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596130629624-3b963170-a9ad-4d70-8dd8-3bed790281bc.png#align=left&display=inline&height=1024&originHeight=1024&originWidth=1920&size=382744&status=done&style=none&width=1920)
+
+
+## 一、引言或者简介
+
+  该说明书详细介绍了此软件的底层构建原理，在阅读此说明书之前，您需要大致掌握的编程语言有：HTML语言，Javascript语言，除此以外您需要了解前端框架Vue.js。Gun是此软件的核心技术，我们建议您在阅读说明书之前先阅读[Gun官方文档](https://gun.eco/docs/Todo-Dapp)。该说明书将详细介绍该软件的运行环境以及如何运行，其中包含各个组件的详细介绍。
+
+## 二、软件的概述
+
+### 1.软件说明
+
+  此系统基于GunDB，GunDB是一个开源的去中心化数据库。其着重关心需要在应用程序中存储、加载和共享的数据，而不必担心服务器、网络呼叫、数据库或跟踪脱机更改或并发冲突。
+去中心化：在一个分布有众多节点的系统中，每个节点都具有高度自治的特征。节点之间彼此可以自由连接，形成新的连接单元。任何一个节点都可能成为阶段性的中心，但不具备强制性的中心控制功能。节点与节点之间的影响，会通过网络而形成非线性因果关系。去中心化，不是不要中心，而是由节点来自由选择中心、自由决定中心。简单地说，中心化的意思，是中心决定节点。节点必须依赖中心，节点离开了中心就无法生存。在去中心化系统中，任何人都是一个节点，任何人也都可以成为一个中心。任何中心都不是永久的，而是阶段性的，任何中心对节点都不具有强制性。前端部分使用Vue框架，将Vue与Gun进行绑定，基于此进行应用开发。客户端采用electron进行项目打包，总体项目结构与网页端没有太大差别。
+
+### 2.运行环境
+
+  `此项目开发需要安装npm、vue依赖，并安装git用以拉取项目仓库`
+
+#### (1)获取仓库
+
+  选择不同方式，通过以下链接将项目仓库clone到本地
+
+- [SSH]()
+- [HTTPS](https://se.jisuanke.com/gun-file-shearing/code-all-right/gundb.git)
+
+#### (2)环境配置
+
+请参照[README文件](https://se.jisuanke.com/gun-file-shearing/code-all-right/gundb#%E4%BB%8B%E7%BB%8D)，注意要在第二层gundb目录里运行（第二层gundb文件）。
+运行完毕后根据给出的链接进行访问可进入网页
+
+![网页界面.png](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596081111655-ec3f534c-7b1b-4a1c-a26c-6dd0fed24463.png#align=left&display=inline&height=891&originHeight=891&originWidth=1918&size=217169&status=done&style=none&width=1918)
+
+### 3.相关组件及功能介绍
+
+#### （1）Upload.vue为文件上传界面，实现文件上传相关的功能及UI界面
+
+#### （2）Download.vue为文件下载界面，实现文件下载或预览的相关功能及UI界面
+
+#### （3）App.vue为界面公共布局，实现网页公共部分布局
+
+#### （4）Linkbox.vue为文件分享链接组件，实现文件分享链接相关功能
+
+#### （5）Password.vue为文件密码输入组件，实现输入及判断获取文件的密码相关功能
+
+#### （6）PreviewImage.vue为图片预览组件，实现图片预览功能
+
+#### （7）PreviewPdf.vue为PDF文件预览组件，实现PDF文件预览功能
+
+#### （8）Common.vue为Upload.vue和Download.vue的公共数据存储文件，实现文件传输密码加密功能
+
+#### （9）GunPanel.vue为布局组件，实现了上传界面和下载界面主面板的动态响应布局
+
+#### （10）routers/index.js中为浏览器路由设置，实现界面跳转功能
+
+#### （11）tests文件夹中为相关测试文件
+
+#### （12）public/index.html中为工程引进阿里图标，方便在各个组件直接使用阿里图标
+
+#### （13）（客户端）background.js为客户端主进程，实现客户端开关和服务器操作
+
+#### （14）（客户端）vue.config.js为客户端打包配置文件，实现客户端的自定义安装
+
+### 3.基本操作及功能介绍
+
+#### （1）根据[README](https://se.jisuanke.com/gun-file-shearing/code-all-right/gundb#%E4%BB%8B%E7%BB%8D)将项目克隆到本地
+
+#### （2）通过Vs code打开文件，对文件进行修改完善，下面将介绍此项目中的主要函数
+
+- Upload.vue里面的函数
+
+  1）getBase64(file)
+
+    是文件转码的函数，参数为文件对象，次函数对传进来的文件对象进行base64编码；
+
+  2）SplitBase64(str, num = 2000000)
+
+    接受两个参数，第一个是文件转换后的base64编码，第二个是分块文件的大小，默认的大小为2M，实现文件拆分，然后返回一个数组；
+
+  3）uploadFilePart(fileName, fileContent, i)
+
+    上传一小块的文件,第一个参数是文件名字，第二个参数是上面返回的文件数组，第三个参数是文件数组的第几部分；
+
+  4）uploadFileInfo(filename = null)
+
+    此函数存储文件的数量、名字，每插入一次文件，都会调用一次函数来将文件名以及文件数量更新在Vue的本地存储中，当用户点击确认上传后，会将所有的文件名上传到数据库；
+
+  5）uploadFile(item)
+
+    上传文件入口函数，参数为文件对象，通过此函数调用其他几个函数，将文件上传到服务器，里面进行的操作包括文件分块、文件上传等，是核心函数之一。
+
+
+- Download.vue里面的函数
+
+  1）checkFileValidity()
+
+    检查文件的有效信息；
+
+  2）downloadfile(item)
+
+    参数是文件对象的base64编码，是文件下载入口，通过此函数调用其他函数将文件下载到本地；
+
+  3）previewfile(item)
+
+    参数是文件对象的base64编码，是文件预览入口，通过此函数调用其他函数对文件进行预览；
+
+  4）dataURLtoBlob(dataurl)
+
+    此函数是转码函数，参数是文件base64编码，通过此函数对文件进行解码，返回文件对象；
+
+  5） downloadFile(url, name = '')
+
+    参数是文件对象的url，通过此函数将文件下载到本地；
+
+  6）downloadFileByBase64(base64, name, ShowProgerss)
+
+    参数是文件的base64编码，文件名，以及判断文件操作布尔值。通过调用解码函数对文件进行解码，之后对文件进行预览或者下载。
+
+
+- （客户端）background.js里面的函数
+
+  1）createWindow()
+
+    打开客户端窗口；
+
+  2）gunInstall()
+
+    检测是否安装了Gun的包，若没有安装则会自动进行安装；
+
+  3）closeGunSever()
+
+    检测本地是否开启了Gun服务器，若已开启，则将其关闭；
+
+  4）runGunSever()
+
+    开启本地Gun服务器；
+
+  5） runExec()
+
+    获取局域网内所有IP，并将运行中的IP添加至Gun数据库中。
+
+
+
 
 ### （四）性能需求
 
