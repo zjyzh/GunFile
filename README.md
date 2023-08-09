@@ -275,7 +275,7 @@ PDF文件预览：
 
 #### (2)环境配置
 
-请参照[README文件](https://se.jisuanke.com/gun-file-shearing/code-all-right/gundb#%E4%BB%8B%E7%BB%8D)，注意要在第二层gundb目录里运行（第二层gundb文件）。
+请参照上文，注意要在第二层gundb目录里运行（第二层gundb文件）。
 运行完毕后根据给出的链接进行访问可进入网页
 
 ![网页界面.png](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596081111655-ec3f534c-7b1b-4a1c-a26c-6dd0fed24463.png#align=left&display=inline&height=891&originHeight=891&originWidth=1918&size=217169&status=done&style=none&width=1918)
@@ -312,7 +312,7 @@ PDF文件预览：
 
 ### 3.基本操作及功能介绍
 
-#### （1）根据[README](https://se.jisuanke.com/gun-file-shearing/code-all-right/gundb#%E4%BB%8B%E7%BB%8D)将项目克隆到本地
+#### （1）根据README将项目克隆到本地
 
 #### （2）通过Vs code打开文件，对文件进行修改完善，下面将介绍此项目中的主要函数
 
