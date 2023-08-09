@@ -118,6 +118,7 @@ export default {
         tempThis.toUpload()
       }
     })
+    console.log(tempThis.pageID);
     tempThis.$gun.get('pageIDwithFilename').get(tempThis.pageID).load(function (data) {
       if (data === undefined){
         tempThis.toUpload()// 跳转到上传界面

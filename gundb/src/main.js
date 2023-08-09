@@ -19,8 +19,8 @@ Viewer.setDefaults({
 });
 Vue.use(VueGun, {
   peers: [
-    'http://localhost:8765/gun',
-    'http://182.92.79.239:8765/gun'
+    'http://localhost:8765/gun'
+    // 'http://182.92.79.239:8765/gun'
     // 'http://localhost:8765/gun'
   ],
   radisk: true,

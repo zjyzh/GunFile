@@ -328,9 +328,10 @@ export default {
     },
     uploadFileInfo (filename) {
       const tempThis = this
-      if (filename !== null) {
+      if (filename !== null && filename !== undefined) {
         tempThis.numberOfFile += 1
         tempThis.pageIDwithFilename['filename' + (tempThis.numberOfFile)] = filename
+        console.log("filename ", filename)
         tempThis.pageIDwithFilename['numberOfFile'] = tempThis.numberOfFile
       }
     },
@@ -343,7 +344,8 @@ export default {
           duration: 900
         });
         tempThis.isBig = true;
-        item.isDelete = 1 // 当isdelete=1时，不需要删除数据库的内容，只要删除文件列表的内容,
+        item.isDelete = 1
+        // 当isdelete=1时，不需要删除数据库的内容，只要删除文件列表的内容,
         // 这样同名字的文件就不会被错误删除
         tempThis.$refs.upload.handleRemove(item);
         return false
