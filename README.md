@@ -1,23 +1,26 @@
-﻿# 基于GunDB的网络文件分享平台
-## 一、介绍
+[English](./README.md) | [简体中文](./README.zh.md)
 
-GunDB是一个开源的去中心化数据库。其着重关心需要在应用程序中存储、加载和共享的数据。
+# Network File Sharing Platform based on GunDB
 
-- 去中心化: 在一个分布有众多节点的系统中,每个节点都具有高度自治的特征。
-- 对网络状况不佳的用户有非常良好的脱机工作支持
-- MariaDB is used. Data are persistently stored in local files.
-- 工作方式: GunDB 存储在所有参与网络的节点(peer)上。 它是所有节点的图的集合。
-- 存储需求:理论上不限制大小,可使用的数据受主机环境配置限制,运行之外的
-持久存储量取决于存储引擎。Web 浏览器中通常为 5MB 的本地存储
+## 1. Introduction
 
-**前端技术主要使用Vue框架进行实现，将Vue与Gun进行绑定，基于此进行应用开发**
+GunDB is an open-source decentralized database that focuses on storing, loading, and sharing data in applications.
 
-## 二、Web端部署
+- **Decentralization**: In a system with multiple nodes, each node has a high level of autonomy.
+- Excellent **offline support** for users with poor network conditions.
+- **MariaDB** is used. Data is persistently stored in local files.
+- **Functionality**: GunDB is stored on all participating nodes (peers) and is a collection of graphs for all nodes.
+- **Storage requirements**: Theoretically unlimited in size, the available data is limited by the host environment configuration. The amount of persistent storage outside of runtime depends on the storage engine. In web browsers, it is typically 5MB of local storage.
 
-### 1. 环境要求
-#### 服务器现在暂且不稳定而且带宽不太够，如果进行测试建议在本地搭建服务器
+**The frontend technology is mainly implemented using the Vue framework, which is bound to Gun for application development.**
 
-在项目的根目录（注意该目录没有package.json文件） 执行
+## 2. Web Deployment
+
+### 1. System Requirements
+
+#### The server is currently unstable and has limited bandwidth. It is recommended to set up a local server for testing.
+
+In the root directory of the project (note that there is no `package.json` file in this directory), execute the following:
 
 ```powershell
 npm install gun
@@ -25,662 +28,658 @@ cd node_modules/gun
 npm start
 ```
 
-服务默认开启在本地的8765端口，可以通过访问浏览器`localhost:8765`来进行访问
+The service is by default running on port 8765 in localhost, and you can access it by visiting `localhost:8765` in your browser.
 
-### 2. 快速开始
+### 2. Quick Start
 
-你需要安装 [vue](https://cn.vuejs.org/) 和 [npm](https://www.npmjs.com/)
+You need to install [Vue](https://cn.vuejs.org/) and [npm](https://www.npmjs.com/).
 
-**你应该将仓库`clone`到本地后，进入第二层gundb文件夹，在该目录下，执行**
-
-```powershell
-    cd gundb/gundb
-    npm install
-```
-
-**遇到安装速度过慢的问题可以通过换源解决**
+**After cloning the repository to your local machine, navigate to the `gundb` folder on the second level, and in that directory, execute the following:**
 
 ```powershell
-    npm config set registry https://registry.npm.taobao.org
-    npm config list
+cd gundb/gundb
+npm install
+npm run serve
 ```
 
-**若electron安装失败，可以选择换淘宝源之后手动安装electron**
+**If you encounter slow installation speed, you can solve it by changing the source:**
 
 ```powershell
-    npm config set ELECTRON_MIRROR=https://cdn.npm.taobao.org/dist/electron/
-    npm install electron -g
-```
-
-### 3. eslint代码规范检查
-
-安装Git，并将Git安装目录里的bin目录添加到Windows的PATH系统变量里，这样git就可以全局访问。
-之后运行下面的代码：
-
-```powershell
-　　cp hooks/* .git/hooks/
-```
-
-
-## 三、客户端部署
-### 1. 环境要求
-
-服务器开启在本地的8765端口，使用时请确保8765端口没有被其他进程占用。服务器可以通过访问浏览器`localhost:8765`来进行访问。
-
-你需要安装 [vue](https://cn.vuejs.org/) 和 [npm](https://www.npmjs.com/)
-
-### 2. 快速开始
-
-**你应该将仓库`clone`到本地后，进入所在文件夹，在文件根目录下的gundb目录执行**
-**
-```
-npm install  
-    vue add electron-builder
-```
-
-**添加electron-builder时的选择：**
-**
-```
-? Still proceed? Yes
-    ? Choose Electron Version ^9.0.0
-    ? Add tests with Spectron to your project? No
-```
-
-**遇到安装速度过慢的问题可以通过换源解决**
-```
 npm config set registry https://registry.npm.taobao.org
-    npm config list
+npm config list
 ```
-**若electron安装失败，可以选择换淘宝源之后手动安装electron**
-```
+
+**If the installation of Electron fails, you can choose to manually install Electron after changing to the Taobao source:**
+
+```powershell
 npm config set ELECTRON_MIRROR=https://cdn.npm.taobao.org/dist/electron/
-    npm install electron -g
-```
-### 3. 应用部署
-
-**开发模式运行客户端（在gundb目录下）**
-**
-```
-npm run electron:serve
+npm install electron -g
 ```
 
-**打包客户端**
-**
-```
-npm run electron:build
-```
+### 3. eslint Code Style Checking
 
-### 4. eslint代码规范检查
+Install Git and add the `bin` directory of the Git installation directory to the `PATH` system variable in Windows, so that Git can be accessed globally. Then run the following code:
 
-**安装Git，并将Git安装目录里的bin目录添加到Windows的PATH系统变量里，这样git就可以全局访问。 之后运行下面的代码：**
-
-```
+```powershell
 cp hooks/* .git/hooks/
 ```
 
-# 详细文档
 
-## 一、需求
+## 3. Client Deployment
+### 1. Environment Requirements
 
-### （一）软件简述
+The server should be running on port 8765 locally. Make sure that port 8765 is not occupied by any other process. You can access the server by visiting `localhost:8765` in your browser.
 
-  这是一款名为“Gun File”的文件分享平台，主要分为网页端和客户端。该平台使用Gun为核心技术，使用Javascript语言以及Vue框架进行开发。可以根据不同地区网络环境不稳定的情况，提供一个兼具CDN功能的去中心化文件共享平台，以及实现局域网内部文件分享的场景。该软件支持Web端和客户端，由上传界面和下载界面组成。在用户使用该软件的时候，可以在上传界面上传文件，前软件支持60M内的所有文件类型上传。选择文件以后，用户并可根据自己的需求选择是否进行文件加密分享、设置文件下载次数限制以及设置文件有效期限制，软件采用bcrtjs对文件传输密码进行加密，可实现文件安全传输，上传文件结束后软件会生成一个分享链接，用户可将此链接分享给他人用于下载或预览文件。在有效期内软件会为用户保存文件，用户可以在文件有效期通过文件分享链接下载文件或者预览文件，加密的文件需要输入正确的密码才能进行下载或预览，软件仅支持10M内的pdf及图片格式文件在线预览。用户进入下载界面后一旦有文件下载将减少一次下载次数，当下载次数归零时将不允许再进入下载界面，同时软件将删除下载次数为零或超出有效期的文件。
+You need to install [Vue](https://cn.vuejs.org/) and [npm](https://www.npmjs.com/).
+
+### 2. Quick Start
+
+**After cloning the repository to your local machine, navigate to the respective folder and execute the following commands in the root directory:**
+
+```c
+npm install
+vue add electron-builder
+```
+**When prompted to add electron-builder:**
+
+```c
+? Still proceed? Yes
+? Choose Electron Version ^9.0.0
+? Add tests with Spectron to your project? No
+```
+
+**If you encounter slow installation speed, you can solve it by changing the source:**
+
+```c
+npm config set registry https://registry.npm.taobao.org
+npm config list
+```
+**If the installation of Electron fails, you can choose to manually install Electron after changing to the Taobao source:**
+
+```c
+npm config set ELECTRON_MIRROR=https://cdn.npm.taobao.org/dist/electron/
+npm install electron -g
+```
+### 3. Application Deployment
+
+**Run the client in development mode (inside the 'gundb' directory):**
+```c
+npm run electron:serve
+```
+
+**Build the client:**
+
+```c
+npm run electron:build
+```
+
+### 4. eslint Code Style Checking
+
+**Install Git and add the 'bin' directory of the Git installation directory to the PATH system variable in Windows so that Git can be accessed globally. Then run the following code:**
+
+```c
+cp hooks/* .git/hooks/
+```
+
+# Detailed Documentation
+
+## 1. Requirements
+
+### (I) Software Overview
+
+This is a file sharing platform called "Gun File," which consists of a web client and a desktop client. The platform utilizes Gun as its core technology and is developed using JavaScript language and Vue framework. It provides a decentralized file sharing platform with CDN functionality to accommodate unstable network environments in different regions, as well as enabling file sharing within a local network. The software supports both web and desktop clients, comprising of upload and download interfaces. Users can upload files on the upload interface, supporting all file types up to 60MB. After selecting a file, users can choose to encrypt the file for sharing, set download limits, and specify the file's expiration period. The software encrypts the file transfer password using bcrtjs, ensuring secure file transmission. Once the file upload is complete, the software generates a shareable link that users can share with others for downloading or previewing the file. The software retains the uploaded files within the specified expiration period, allowing users to download or preview them using the file share link. Encrypted files require the correct password for downloading or previewing, and the software only supports online preview for PDF and image files up to 10MB. When a user accesses the download interface and initiates a file download, the download count decreases by one. Once the download count reaches zero, further access to the download interface is prohibited, and the software deletes files with zero downloads or files that have exceeded the expiration period.
+
+### (II) Specifications
+
+#### 1. Web Client Specifications
+##### (1) Uploading Files on the Platform
+
+Users first access the website in an internet-supported environment. On the file upload interface, users select the files they want to share and configure options such as file encryption, download limits, and expiration period. After confirming the upload, the website provides a link that users can share with others who need to download the file.
+
+##### (2) Downloading or Previewing Files via Links
+
+Users access the link via the internet. If the link is within the expiration period and the file's download count is within the specified range, they can access the download interface. If the file is encrypted, users need to enter the password to download or preview the file. If the file is not encrypted, they can directly download or preview it. Currently, file preview supports only PDF and image formats. To prevent excessive strain on local browsers, slow performance, and high CPU usage, file preview is limited to files under 10MB.
+
+#### 2. Desktop Client Specifications
+
+##### (1) Sharing Files within a Local Network via the Desktop Client
+
+The desktop client has options in the menu bar to start and stop the local server. To enable local file sharing within a local network, users must start the local server, upload files, and copy the page ID to another client. This allows access to the files. Note that the other client must be in the same local network (e.g., connected to the same Wi-Fi or network environment) to enjoy high-speed file transfer. Otherwise, the desktop client will default to connecting to the wide-area network server for file upload and download, which is similar to the web client. For more detailed usage instructions, please refer to the user manual below.
 
 
-### （二）规格说明
+### (III) User Manual
 
-#### 1.网页端规格说明
-##### （1）用户在此平台上传要分享的文件
+## I. Introduction
 
-  首先用户在有互联网支持的环境下进入网站 ，在上传文件界面选择用户想要分享的文件，并根据自己需求选择文件是否加密，文件下载次数以及文件有效期选择，确认上传后，网站将会返回一个链接给用户，用户可以将此链接分享给其他需要下载此文件的人。
+If you simply want to perform file transfers using the Gun file and do not wish to understand its underlying development principles, you only need to read this user manual. If you are a developer and want to understand the underlying software architecture, we recommend reading the [Developer's Manual](./Developer_Manual.md) in addition to this user manual. This user manual will provide you with detailed instructions on how to use this software. Whether you want to transfer files over a local network or a wide area network, by referring to this user manual, you can seamlessly use this platform to achieve your goals.
 
-##### （2）用户通过链接下载或预览文件
+## II. Software Overview
 
-  用户通过互联网访问此链接，如果链接在有效期内且链接中的文件下载次数还在设置范围内就可以进入下载界面，若文件被加密，输入密码即可下载或预览文件，如果该文件未被加密，直接可以下载或预览文件。目前预览文件仅支持PDF和图片格式预览，考虑到在线预览大文件可能会造成本地浏览器运行压力过大，拖慢运行速度，消耗CPU资源，故将文件预览大小限制在10M以内。
+### I. Software Description
 
-#### 2.客户端规格说明
+Users can upload one or more files through the web page by accessing the URL. There are no restrictions on file types, but individual file sizes should not exceed 60MB. If a file exceeds the size limit, an upload failure prompt will be displayed. After selecting the files to be uploaded, if a file extraction password is required, users can choose to set a password and enter a string of characters and numbers in the corresponding field. Once a password is set, the correct password must be entered during file extraction, otherwise the file cannot be downloaded or previewed. Users can also specify the number of times a file can be downloaded, with options such as 1, 2, or 5. If the file is downloaded more times than the specified limit, it cannot be downloaded. Users can also set an expiration date for the file, with options such as 1 day, 3 days, or 5 days. After the expiration date, the file cannot be previewed or downloaded. When the user clicks the "Confirm Upload" button, the platform will generate a link. By clicking the copy button, the link can be copied. This link can be used to access the download page. If the correct password is entered, the file can be previewed and downloaded. Currently, online preview only supports images and PDF files with a size limit of 10MB.
 
-##### （1）用户通过客户端在局域网内共享文件
+## III. Basic Operations and Functionality Introduction
 
-  客户端菜单栏有开启和关闭服务器的选项，对应开启和关闭本地服务器，想要开启局域网文件分享功能，就必须开启本地服务器后上传文件，然后复制文件的pageID到另一个客户端上，即可访问文件。注意另一个客户端需要与当前客户端处在同一局域网（具体表现为在同一个WiFi或者网络环境内），那么就可以享受高速的文件传输，如果不是，客户端会默认连接到广域网服务器，进行文件上传下载，这样与Web端没有太大差别。关于更多的使用说明，请参照下方的用户说明书。
+### I. Uploading Files via Web Interface
 
-### （三）说明书
+#### 1. Click the "Select Files" button to open the file selection dialog. Choose the desired file(s) from your local device. Once the prompt "File upload successful" appears, you can select the next file to upload.
 
-## 一、引言
-
-  如果您只是想通过Gun file进行文件传输工作，而不想了解他的底层开发原理，那么你只需要阅读此说明书。如果您是开发者，想了解软件底层构建原理，那么您除了阅读此说明书外，我们建议您额外阅读[开发者使用说明书](./开发者说明书.md)。在此用户说明书中将会为您详细介绍如何使用此软件，无论您是想通过局域网传输文件，还是在广域网传输文件，通过查阅此说明书，您可以无障碍使用此平台达到您的目的。
-
-## 二、软件的概述
-
-### （一）软件说明
-
-  分享用户通过网址进入网页后可上传大于等于一份的文件数，文件类型没有限制，单份文件大小不超60M，文件超过大小将提示上传失败。选择完要上传完的文件后。如果需要设置文件提取密码，可以选择有密码，并在对应位置输入一串密码，密码支持字符和数字，一旦选择有密码，在提取文件时候需要输入正确密码，否则将不能下载或者预览文件。用户可为文件选择下载次数，下载次数提供1、2、5等五个选择，如果在提取文件时候超过文件下载次数，将不能下载。用户也可为为文件选择有效日期，文件有效日期提供1天、3天、5天等5个选项，选择有效日期后，超过有效日期的文件将无法进行预览或者下载。用户点击“确认上传”按钮，平台将会自动生成链接，点击复制按钮就可以复制链接，通过此链接可以进入到下载界面，如果密码输入正确密码就可以对文件进行预览和下载操作，目前在线预览只支持图片和PDF文件，且文件大小不超过10M。
-
-## 三、基本操作及功能介绍
-
-### （一）网页端上传文件
-
-#### 1.点击选取文件按钮，弹出选择文件框，在本地选取想要上传的文件，待提示文件上传成功后，选择下一个要上传的文件
 ![上传文件gif.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596081609835-1794cc25-a96c-4e0e-a9dc-1652cb4345e6.gif#align=left&display=inline&height=928&originHeight=928&originWidth=1812&size=1035080&status=done&style=none&width=1812)
 
-#### 2.上传文件大小限制在60M内，超过大小限制将平台将会提示文件无法上传
+#### 2. The file size limit for upload is 60MB. If the file exceeds this limit, the platform will display a prompt indicating that the file cannot be uploaded.
 
 ![大文件上传.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596081825822-e50f6814-7e58-4adb-92bf-0c9b2735b8d9.gif#align=left&display=inline&height=934&originHeight=934&originWidth=1818&size=1155966&status=done&style=none&width=1818)
 
-#### 3.如果文件选取错误，可将鼠标移动到文件列表中的文件名上，点击右边“移除”按钮，即可将文件移除
+#### 3. If a file is selected incorrectly, hover the mouse over the file name in the file list and click the "Remove" button on the right to remove the file.
 
 ![移除文件.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596081948702-7e932290-f9af-40a0-8cd6-695169d42571.gif#align=left&display=inline&height=923&originHeight=923&originWidth=1824&size=2282028&status=done&style=none&width=1824)
 
-#### 4.不允许上传同名文件，如果上传同名文件，系统将会提示“文件已上传”
+#### 4. Uploading files with the same name is not allowed. If a file with the same name is uploaded, the system will display a prompt saying "File already uploaded."
 
 ![同名文件.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596082139750-760c1146-6783-4e53-a081-f5aa238fa382.gif#align=left&display=inline&height=918&originHeight=918&originWidth=1822&size=1031939&status=done&style=none&width=1822)
 
-#### 5.选择文件提取是否需要密码，如果需要设置密码，在密码输入框里面输入密码，如果不需要密码，可以跳过此步骤，当选择输入密码以后，提取文件时候需要首先输入正确的密码
+#### 5. Choose whether to set a password for file extraction. If a password is required, enter it in the password input field. If no password is needed, you can skip this step. Once a password is set, it cannot be changed.
+
 ![输入密码.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596082273988-59ae2219-41ab-4c49-9ae4-1787db614df8.gif#align=left&display=inline&height=928&originHeight=928&originWidth=1815&size=755620&status=done&style=none&width=1815)
 
-#### 6.选择传输的文件下载次数，可分别选择1、2、5、8、10次。默认为1次，点击下拉框可进行更改，超过下载次数将文件将不能下载
+#### 6. Specify the number of times the file can be downloaded. The options include 1, 2, or 5 times. If the file is downloaded more times than the specified limit, it cannot be downloaded.
 
 ![选择.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596082625438-bcbdcd2d-2e85-4c6b-8127-bfe4f49e1db3.gif#align=left&display=inline&height=921&originHeight=921&originWidth=1803&size=719306&status=done&style=none&width=1803)
 
-#### 7.选择传输的文件有效期限制，可分别选择1、3、5、7、10天。默认为1天，点击下拉框可进行更改，超过文件有效日期，将不能不不能对文件下载或者预览
+#### 7. Set an expiration date for the file. The options include 1 day, 3 days, or 5 days. After the expiration date, the file cannot be previewed or downloaded.
 
 ![选择有效日期.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596082642597-1e8de42d-4ec2-4ed7-93b3-0b1c79dbc3bc.gif#align=left&display=inline&height=944&originHeight=944&originWidth=1804&size=751394&status=done&style=none&width=1804)
 
-#### 8.以上设置完毕后点击“确认上传”按钮，页面弹出文件链接
+
+#### 8. Click the "Confirm Upload" button to generate a link. Click the copy button to copy the link. This link can be shared with others to access the download page.
 
 ![确认上传文件.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596082686765-c373fd5f-d0d4-4c83-a36f-905f22ac6d07.gif#align=left&display=inline&height=940&originHeight=940&originWidth=1817&size=842732&status=done&style=none&width=1817)
 
-#### 9.点击“复制”按钮可以将此链接分享给其他需要下载或预览此次上传文件的人，可以通过此链接进入网站对文件进下载或预览操作复制链接后点击“关闭”按钮，可以进行下一次上传文件操作
+#### 9. Clicking the "Copy" button allows you to share this link with others who need to download or preview the uploaded file. They can use this link to access the website and perform download or preview operations on the file. After copying the link, click the "Close" button to proceed with the next file upload.
 
-![点击复制关闭按钮.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596082834398-82d4d306-170e-4338-9630-fc0adc85205e.gif#align=left&display=inline&height=930&originHeight=930&originWidth=1821&size=752999&status=done&style=none&width=1821)
+![Copy Button.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596082834398-82d4d306-170e-4338-9630-fc0adc85205e.gif#align=left&display=inline&height=930&originHeight=930&originWidth=1821&size=752999&status=done&style=none&width=1821)
 
-#### 10.上传文件全部操作过程
-![完整.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596083944866-a835014d-0db6-49df-ab02-6457dbae0fd5.gif#align=left&display=inline&height=974&originHeight=974&originWidth=1823&size=1804597&status=done&style=none&width=1823)
+#### 10. Complete process of uploading a file
+![Complete Process.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596083944866-a835014d-0db6-49df-ab02-6457dbae0fd5.gif#align=left&display=inline&height=974&originHeight=974&originWidth=1823&size=1804597&status=done&style=none&width=1823)
 
-### （二）网页端对文件进行预览或者下载
+### (II) Previewing or downloading files on the web page
 
-#### 1.通过被文件链接访问文件下载界面，若被分享的文件仍在保存期限内且下载次数仍在限制之内，则进入下一步
+#### 1. Access the file download page through the file link. If the shared file is still within the storage period and the number of downloads is within the limit, proceed to the next step.
 
-![进入下载页面.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596082944641-83efffa4-795a-4acd-b904-800f8c3e9852.gif#align=left&display=inline&height=990&originHeight=990&originWidth=1819&size=519802&status=done&style=none&width=1819)
+![Enter Download Page.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596082944641-83efffa4-795a-4acd-b904-800f8c3e9852.gif#align=left&display=inline&height=990&originHeight=990&originWidth=1819&size=519802&status=done&style=none&width=1819)
 
-#### 2.若文件提取不需要密码，则直接进入下载界面可对文件进行操作，若提取文件需要密码密码，需要输入正确的密码才可访问下载界面
+#### 2. If no password is required to extract the file, you can directly access the download page and perform file operations. If a password is required, you need to enter the correct password to access the download page.
 
-![密码正确.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596083290323-5df0c6fe-161b-45e9-83c8-055048728448.gif#align=left&display=inline&height=922&originHeight=922&originWidth=1818&size=775563&status=done&style=none&width=1818)
+![Correct Password.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596083290323-5df0c6fe-161b-45e9-83c8-055048728448.gif#align=left&display=inline&height=922&originHeight=922&originWidth=1818&size=775563&status=done&style=none&width=1818)
 
-#### 3.鼠标浮动到文件名上面，将会在文件右边出现“预览”按钮，点击按钮，如果符合文件格式符合文件预览格式（PDF或图片）要求且大小不超过10M。即可以对文件进行预览，如果不符合要求，系统将会提示用户“暂不支持此文件预览”
+#### 3. When hovering over the file name, a "Preview" button will appear on the right side of the file. Click the button to preview the file if it meets the requirements for file format (PDF or image) and is within 10MB in size. If the requirements are not met, the system will prompt the user with "Preview not available for this file".
 
-图片预览：
+Image preview:
 
-![点击进行图片预览.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596083373252-21d9bce2-3dc1-466f-8b2b-e4610ecee75b.gif#align=left&display=inline&height=940&originHeight=940&originWidth=1824&size=2147611&status=done&style=none&width=1824)
+![Click to Preview Image.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596083373252-21d9bce2-3dc1-466f-8b2b-e4610ecee75b.gif#align=left&display=inline&height=940&originHeight=940&originWidth=1824&size=2147611&status=done&style=none&width=1824)
 
-PDF文件预览：
+PDF file preview:
 
-![预览pdf.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596084179236-c8c23231-450d-4f23-92bd-4dae9de32d53.gif#align=left&display=inline&height=945&originHeight=945&originWidth=1820&size=2859045&status=done&style=none&width=1820)
+![Preview PDF.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596084179236-c8c23231-450d-4f23-92bd-4dae9de32d53.gif#align=left&display=inline&height=945&originHeight=945&originWidth=1820&size=2859045&status=done&style=none&width=1820)
 
-#### 4.满足上述条件后进入下载界面，界面中显示的为被分享的所有文件名，点击文件列表名可以对文件进行下载，默认文件下载到C盘，一旦有文件被下载，文件次数将会减1，之后在同一页面下载其它文件，下载次数不再下降。也就是说，每次打开页面，如果不下载文件，下载次数不变，如果下载了，那么下载次数最多减一，直到您关闭或者刷新页面。这样的设计主要是为了监控多文件下载时候的方便，因为如果给每个文件规定下载次数，界面的信息会变得冗杂和难以管理。
+#### 4. After meeting the above conditions, enter the download page. The page displays all the shared file names. Clicking a file in the list allows you to download the file. By default, the files are downloaded to the C drive. Once a file is downloaded, the download count will decrease by 1. You can continue downloading other files on the same page without decreasing the download count. In other words, if you open the page but do not download any file, the download count remains the same. If you download a file, the download count will decrease by at most 1 until you close or refresh the page. This design is mainly for the convenience of monitoring multiple file downloads, as specifying download counts for each file would result in cluttered and difficult-to-manage information.
 
 ![点击进行下载.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596083302457-520a7b90-f697-4eb8-bae0-a27e803986ec.gif#align=left&display=inline&height=914&originHeight=914&originWidth=1810&size=1010157&status=done&style=none&width=1810)
 
-#### 5.刷新界面或重新访问界面，若文件仍在保存期限内且下载次数仍在限制之内，用户可继续对文件进行操作，如果是超过文件有效期，则提示“文件已过期”，如果是超过下载次数，则提示“文件已达最大下载次数”，并自动跳转到上传界面
+#### 5. Refresh the page or revisit the page. If the file is still within the expiration period and the download limit has not been reached, the user can continue to perform operations on the file. If the file has exceeded the validity period, it will display "File has expired". If the download limit has been exceeded, it will display "File has reached the maximum download limit" and automatically redirect to the upload page.
 
-![文件已达最大下载次数.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596084526967-3828e3fd-4d5d-430f-8371-9fcee0ae2365.gif#align=left&display=inline&height=988&originHeight=988&originWidth=1818&size=407484&status=done&style=none&width=1818)
-### （三）在客户端进行文件传输
+![Maximum Download Limit Exceeded](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596084526967-3828e3fd-4d5d-430f-8371-9fcee0ae2365.gif#align=left&display=inline&height=988&originHeight=988&originWidth=1818&size=407484&status=done&style=none&width=1818)
 
-#### 1.安装客户端
+### (III) File Transfer on Client-side
 
-#### 2.上传文件的步骤与网页端相差无几，具体可参照[网页端上传文件](#7c21f307)，唯一不同的是：点击“确认上传”按钮后，弹出的对话框中有一个pageID
+#### 1. Install the client.
 
-![客户端图片2.png](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596083498913-bfade717-6ffc-44ce-a728-d3000ab23701.png#align=left&display=inline&height=1249&originHeight=1249&originWidth=1920&size=350873&status=done&style=none&width=1920)
+#### 2. The steps for uploading files are similar to the web interface. Please refer to [Uploading Files on the Web](#7c21f307). The only difference is that after clicking the "Confirm Upload" button, a dialog box with a pageID will appear.
 
-#### 3.要在客户端接收文件，应该打开客户端之后，在页面的左上角点击按钮：去下载
+![Client Screenshot 2](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596083498913-bfade717-6ffc-44ce-a728-d3000ab23701.png#align=left&display=inline&height=1249&originHeight=1249&originWidth=1920&size=350873&status=done&style=none&width=1920)
 
-![客户端图片1.png](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596083506429-ea2a574f-582d-49af-860f-9e5f6a9d1b7d.png#align=left&display=inline&height=1080&originHeight=1080&originWidth=1920&size=119003&status=done&style=none&width=1920)
+#### 3. To receive files on the client-side, open the client and click the "Go to Download" button located at the top left corner of the page.
 
-#### 4.跳转到下载界面，在下载界面会要求输入确认上传后的pageID,确认上传后的pageID
+![Client Screenshot 1](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596083506429-ea2a574f-582d-49af-860f-9e5f6a9d1b7d.png#align=left&display=inline&height=1080&originHeight=1080&originWidth=1920&size=119003&status=done&style=none&width=1920)
 
-![客户端输入链接.png](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596083524572-4eb01213-19f0-43f6-b1d0-b5a49e5adcb8.png#align=left&display=inline&height=885&originHeight=885&originWidth=1100&size=87330&status=done&style=none&width=1100)
+#### 4. You will be redirected to the download page where you need to enter the pageID obtained after confirming the upload.
 
-#### 5.输入正确的pageID后，如果该文件有密码，那么会要求输入密码，在输入正确的密码后，会提示密码正确，就可以进入下载界面，就能正常地进行下载和预览。
+![Client Enter Link](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596083524572-4eb01213-19f0-43f6-b1d0-b5a49e5adcb8.png#align=left&display=inline&height=885&originHeight=885&originWidth=1100&size=87330&status=done&style=none&width=1100)
 
-![客户端密码输入.png](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596083550273-8980bf9c-8871-4924-869a-276723e46d13.png#align=left&display=inline&height=924&originHeight=924&originWidth=1159&size=95146&status=done&style=none&width=1159)
+#### 5. After entering the correct pageID, if the file is password-protected, it will prompt for the password. Upon entering the correct password, it will display "Password Correct" and allow access to the download page for normal downloading and previewing.
 
-#### 6.客户端下载界面对文件进行下载或预览与Web端相同，具体参照网[页端对文件进行下载或预览](https://www.yuque.com/yezhi-hwxhu/kb/ovv0ae/edit#d0f4bb69)
+![Client Password Input](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596083550273-8980bf9c-8871-4924-869a-276723e46d13.png#align=left&display=inline&height=924&originHeight=924&originWidth=1159&size=95146&status=done&style=none&width=1159)
 
-#### 7.菜单栏有开启和关闭服务器的选项，对应开启和关闭本地服务器，想要开启局域网文件分享功能，就必须开启本地服务器后上传文件，然后复制文件链接到另一个客户端上，即可访问文件
+#### 6. The client's download page allows downloading and previewing files similar to the web interface. 
 
-![AAAAA.png](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596130629624-3b963170-a9ad-4d70-8dd8-3bed790281bc.png#align=left&display=inline&height=1024&originHeight=1024&originWidth=1920&size=382744&status=done&style=none&width=1920)
+#### 7. The menu bar has options to open and close the server, which corresponds to enabling and disabling the local server. To enable LAN file sharing, you must upload files after starting the local server, and then copy the file link to another client to access the file.
 
+![Screenshot AAAAA](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596130629624-3b963170-a9ad-4d70-8dd8-3bed790281bc.png#align=left&display=inline&height=1024&originHeight=1024&originWidth=1920&size=382744&status=done&style=none&width=1920)
 
-## 一、引言或者简介
 
-  该说明书详细介绍了此软件的底层构建原理，在阅读此说明书之前，您需要大致掌握的编程语言有：HTML语言，Javascript语言，除此以外您需要了解前端框架Vue.js。Gun是此软件的核心技术，我们建议您在阅读说明书之前先阅读[Gun官方文档](https://gun.eco/docs/Todo-Dapp)。该说明书将详细介绍该软件的运行环境以及如何运行，其中包含各个组件的详细介绍。
+## Introduction or Overview
 
-## 二、软件的概述
+This documentation provides a detailed explanation of the underlying construction principles of this software. Before reading this documentation, you should have a basic understanding of the following programming languages: HTML, JavaScript, and additionally, familiarity with the front-end framework Vue.js is required. Gun is the core technology of this software, and we recommend reading the [Gun official documentation](https://gun.eco/docs/Todo-Dapp) before proceeding with this documentation. This documentation will cover the software's runtime environment and how to run it, including detailed descriptions of each component.
 
-### 1.软件说明
+## Software Overview
 
-  此系统基于GunDB，GunDB是一个开源的去中心化数据库。其着重关心需要在应用程序中存储、加载和共享的数据，而不必担心服务器、网络呼叫、数据库或跟踪脱机更改或并发冲突。
-去中心化：在一个分布有众多节点的系统中，每个节点都具有高度自治的特征。节点之间彼此可以自由连接，形成新的连接单元。任何一个节点都可能成为阶段性的中心，但不具备强制性的中心控制功能。节点与节点之间的影响，会通过网络而形成非线性因果关系。去中心化，不是不要中心，而是由节点来自由选择中心、自由决定中心。简单地说，中心化的意思，是中心决定节点。节点必须依赖中心，节点离开了中心就无法生存。在去中心化系统中，任何人都是一个节点，任何人也都可以成为一个中心。任何中心都不是永久的，而是阶段性的，任何中心对节点都不具有强制性。前端部分使用Vue框架，将Vue与Gun进行绑定，基于此进行应用开发。客户端采用electron进行项目打包，总体项目结构与网页端没有太大差别。
+### 1. Software Description
 
-### 2.运行环境
+This system is based on GunDB, an open-source decentralized database. It focuses on storing, loading, and sharing data in applications without the need to worry about servers, network calls, databases, or tracking offline changes or concurrency conflicts.
+Decentralization: In a system with multiple nodes, each node has a high degree of autonomy. Nodes can freely connect with each other to form new connection units. Any node can become a temporary center, but it does not possess mandatory central control. The influence between nodes forms non-linear causal relationships through the network. Decentralization does not mean the absence of a center, but rather the freedom for nodes to choose and determine the center. In simple terms, centralization means the center determines the nodes. Nodes must rely on the center, and they cannot survive without it. In a decentralized system, anyone can be a node, and anyone can also become a center. No center is permanent; they are all temporary, and no center has control over nodes. The front-end part uses the Vue framework and binds Vue with Gun for application development. The client-side uses Electron for project packaging, and the overall project structure is not significantly different from the web version.
 
-  `此项目开发需要安装npm、vue依赖，并安装git用以拉取项目仓库`
+### 2. Runtime Environment
 
-#### (1)获取仓库
+To develop this project, you need to install npm, Vue dependencies, and Git for cloning the project repository.
 
-  选择不同方式，通过以下链接将项目仓库clone到本地
+#### (1) Clone the Repository
 
-- [SSH]()
-- [HTTPS](https://se.jisuanke.com/gun-file-shearing/code-all-right/gundb.git)
+Choose a method and clone the project repository to your local machine using the following links:
 
-#### (2)环境配置
+- SSH
+- HTTPS
 
-请参照上文，注意要在第二层gundb目录里运行（第二层gundb文件）。
-运行完毕后根据给出的链接进行访问可进入网页
+#### (2) Environment Configuration
 
-![网页界面.png](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596081111655-ec3f534c-7b1b-4a1c-a26c-6dd0fed24463.png#align=left&display=inline&height=891&originHeight=891&originWidth=1918&size=217169&status=done&style=none&width=1918)
+Please refer to the previous section and make sure to run it within the second-level gundb directory (inside the second-level gundb file). After running it, access the webpage using the provided link.
 
-### 3.相关组件及功能介绍
+![Web Interface](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596081111655-ec3f534c-7b1b-4a1c-a26c-6dd0fed24463.png#align=left&display=inline&height=891&originHeight=891&originWidth=1918&size=217169&status=done&style=none&width=1918)
 
-#### （1）Upload.vue为文件上传界面，实现文件上传相关的功能及UI界面
+### 3. Introduction to Components and Features
 
-#### （2）Download.vue为文件下载界面，实现文件下载或预览的相关功能及UI界面
+#### (1) Upload.vue
 
-#### （3）App.vue为界面公共布局，实现网页公共部分布局
+Upload.vue is the file upload interface that implements file upload functionality and UI.
 
-#### （4）Linkbox.vue为文件分享链接组件，实现文件分享链接相关功能
+#### (2) Download.vue
 
-#### （5）Password.vue为文件密码输入组件，实现输入及判断获取文件的密码相关功能
+Download.vue is the file download interface that implements file download or preview functionality and UI.
 
-#### （6）PreviewImage.vue为图片预览组件，实现图片预览功能
+#### (3) App.vue
 
-#### （7）PreviewPdf.vue为PDF文件预览组件，实现PDF文件预览功能
+App.vue is the common layout for the interface, implementing the common layout for the web page.
 
-#### （8）Common.vue为Upload.vue和Download.vue的公共数据存储文件，实现文件传输密码加密功能
+#### (4) Linkbox.vue
 
-#### （9）GunPanel.vue为布局组件，实现了上传界面和下载界面主面板的动态响应布局
+Linkbox.vue is the file sharing link component that implements file sharing link functionality.
 
-#### （10）routers/index.js中为浏览器路由设置，实现界面跳转功能
+#### (5) Password.vue
 
-#### （11）tests文件夹中为相关测试文件
+Password.vue is the file password input component that implements input and verification of file passwords.
 
-#### （12）public/index.html中为工程引进阿里图标，方便在各个组件直接使用阿里图标
+#### (6) PreviewImage.vue
 
-#### （13）（客户端）background.js为客户端主进程，实现客户端开关和服务器操作
+PreviewImage.vue is the image preview component that enables image preview functionality.
 
-#### （14）（客户端）vue.config.js为客户端打包配置文件，实现客户端的自定义安装
+#### (7) PreviewPdf.vue
 
-### 3.基本操作及功能介绍
+PreviewPdf.vue is the PDF file preview component that enables PDF file preview functionality.
 
-#### （1）根据README将项目克隆到本地
+#### (8) Common.vue
 
-#### （2）通过Vs code打开文件，对文件进行修改完善，下面将介绍此项目中的主要函数
+Common.vue is the data storage file for Upload.vue and Download.vue, implementing file transfer password encryption functionality.
 
-- Upload.vue里面的函数
+#### (9) GunPanel.vue
 
-  1）getBase64(file)
+GunPanel.vue is the layout component that dynamically responds to the main panels of the upload and download interfaces.
 
-    是文件转码的函数，参数为文件对象，次函数对传进来的文件对象进行base64编码；
+#### (10) routers/index.js
 
-  2）SplitBase64(str, num = 2000000)
+routers/index.js is the browser routing configuration that enables page navigation functionality.
 
-    接受两个参数，第一个是文件转换后的base64编码，第二个是分块文件的大小，默认的大小为2M，实现文件拆分，然后返回一个数组；
+#### (11) tests folder
 
-  3）uploadFilePart(fileName, fileContent, i)
+The tests folder contains related test files.
 
-    上传一小块的文件,第一个参数是文件名字，第二个参数是上面返回的文件数组，第三个参数是文件数组的第几部分；
+#### (12) public/index.html
 
-  4）uploadFileInfo(filename = null)
+public/index.html imports Alibaba icons for easy use in various components.
 
-    此函数存储文件的数量、名字，每插入一次文件，都会调用一次函数来将文件名以及文件数量更新在Vue的本地存储中，当用户点击确认上传后，会将所有的文件名上传到数据库；
+#### (13) (Client-side) background.js
 
-  5）uploadFile(item)
+background.js is the client-side main process that enables client on/off and server operations.
 
-    上传文件入口函数，参数为文件对象，通过此函数调用其他几个函数，将文件上传到服务器，里面进行的操作包括文件分块、文件上传等，是核心函数之一。
+#### (14) (Client-side) vue.config.js
 
+vue.config.js is the client-side packaging configuration file that allows custom installations for the client.
 
-- Download.vue里面的函数
+### 3. Basic Operations and Features
 
-  1）checkFileValidity()
+#### (1) Clone the project to your local machine according to the README.
 
-    检查文件的有效信息；
+#### (2) Open the files using VS Code and make modifications. The following section will describe the main functions in this project.
 
-  2）downloadfile(item)
+- Functions in Upload.vue
 
-    参数是文件对象的base64编码，是文件下载入口，通过此函数调用其他函数将文件下载到本地；
+   1) getBase64(file)
 
-  3）previewfile(item)
+      This function encodes the file by converting it to base64. The parameter is the file object, and this function encodes the passed file object into base64.
 
-    参数是文件对象的base64编码，是文件预览入口，通过此函数调用其他函数对文件进行预览；
+   2) SplitBase64(str, num = 2000000)
 
-  4）dataURLtoBlob(dataurl)
+      This function accepts two parameters: the first one is the base64 encoding of the file after conversion, and the second one is the size of each file chunk, with a default size of 2MB. It implements file splitting and returns an array.
 
-    此函数是转码函数，参数是文件base64编码，通过此函数对文件进行解码，返回文件对象；
+   3) uploadFilePart(fileName, fileContent, i)
 
-  5） downloadFile(url, name = '')
+      This function uploads a small portion of the file. The first parameter is the file name, the second parameter is the array of files returned above, and the third parameter is the index of the file array.
 
-    参数是文件对象的url，通过此函数将文件下载到本地；
+   4) uploadFileInfo(filename = null)
 
-  6）downloadFileByBase64(base64, name, ShowProgerss)
+      This function stores the number and names of files. Each time a file is inserted, this function is called to update the file name and quantity in the local storage of Vue. When the user clicks on the confirm upload button, all the file names will be uploaded to the database.
 
-    参数是文件的base64编码，文件名，以及判断文件操作布尔值。通过调用解码函数对文件进行解码，之后对文件进行预览或者下载。
+   5) uploadFile(item)
 
+      This function is the entry point for uploading files. The parameter is the file object. This function calls several other functions to upload the file to the server. The operations performed include file chunking and file upload. It is one of the core functions.
 
-- （客户端）background.js里面的函数
+- Functions in Download.vue
 
-  1）createWindow()
+   1) checkFileValidity()
 
-    打开客户端窗口；
+      This function checks the validity of the file information.
 
-  2）gunInstall()
+   2) downloadfile(item)
 
-    检测是否安装了Gun的包，若没有安装则会自动进行安装；
+      This function is the entry point for file downloading. The parameter is the base64 encoding of the file object. This function calls other functions to download the file to the local machine.
 
-  3）closeGunSever()
+   3) previewfile(item)
 
-    检测本地是否开启了Gun服务器，若已开启，则将其关闭；
+      This function is the entry point for file preview. The parameter is the base64 encoding of the file object. This function calls other functions to preview the file.
 
-  4）runGunSever()
+   4) dataURLtoBlob(dataurl)
 
-    开启本地Gun服务器；
+      This function is a decoding function. The parameter is the base64 encoding of the file. This function decodes the file and returns the file object.
 
-  5） runExec()
+   5) downloadFile(url, name = '')
 
-    获取局域网内所有IP，并将运行中的IP添加至Gun数据库中。
+      This function downloads the file to the local machine using the URL of the file object as a parameter.
 
+   6) downloadFileByBase64(base64, name, ShowProgerss)
 
+      This function takes the base64 encoding of the file, the file name, and a boolean value to determine the file operation. It calls the decoding function to decode the file and then previews or downloads the file.
 
+- Functions in (Client-side) background.js
 
-### （四）性能需求
+   1) createWindow()
 
-#### 1.精度
+      Opens the client-side window.
 
-##### （1）文件上传
+   2) gunInstall()
 
-- 上传文件选取：可选取任意文件格式
-- 文件密码输入：可输入任意长度及符号组成的密码
-- 文件保存时间：可选择1天、3天、5天、7天及10天
-- 文件下载次数：可选择1、2、5、7、10次
+      Checks if the Gun package is installed and automatically installs it if not.
 
-##### （2）文件下载
+   3) closeGunSever()
 
-         下载文件选取：可选取任意文件格式
+      Checks if the local Gun server is running and closes it if it is.
 
-##### （3）文件预览
+   4) runGunSever()
 
-          预览文件选取：仅支持预览pdf格式及所有图片格式，且文件大小不超过10M
+      Starts the local Gun server.
 
-#### 2.灵活性
+   5) runExec()
 
-      当产品投入使用后，根据用户反馈、产品测试或技术更新，可能对产品进行以下相关调整
+      Gets all the IP addresses in the local network and adds the running IP addresses to the Gun database.
 
-##### (1)运行环境变化
 
-  服务器开启在本地的8765端口，使用时请确保8765端口没有被其他进程占用。服务器可以通过访问浏览器`localhost:8765`来进行访问。主采用Windows平台的编译版本运行和调试，在时间允许的情况下，同步开发支持SUSE Linux的服务器版本
+### (IV) Performance Requirements
 
-### （五）问题分析报告
+#### 1. Accuracy
 
-#### 1.问题现象：
+##### (1) File Upload
 
-  对于不同地区网络环境不稳定的情况，提供一个去中心化文件分享平台，解决局域网内部文件分享情景，需要开发Web端和客户端，且web端支持部分文件的预览，还可以对文件进行加密，客户端在web端基础上支持局域网内文件的分享。
+- File Selection: Can select files of any format.
+- File Password Input: Can input passwords of any length and symbols.
+- File Storage Time: Can choose from 1 day, 3 days, 5 days, 7 days, and 10 days.
+- File Download Limit: Can choose 1, 2, 5, 7, or 10 downloads.
 
-#### 2.问题分析：
+##### (2) File Download
 
-  此项目要求搭建一个去中心化文件分享平台，GunDB 本身就是一个开源的去中心化数据库，为搭建平台提供了技术支持。需要开发Web端，需要选择合适的语言以及框架；支持文件预览，预测需要引入一些插件；需要搭建客户端，考虑怎样将Web端包装成客户端。在广域网内传输文件，需要将文件上传到远端服务器。客户端需要在局域网内进行文件分享，则需要将文件上传到局域网内的服务器中，这样才能在客户端中获取到局域网内其他客户端上传的文件，从而进行预览和下载操作。
+- File Selection: Can select files of any format.
 
-#### 3.解决方法：
+##### (3) File Preview
 
-  以Gun为核心技术，借助GunDB实现去中心化。根据需求采用Javascipt、html作为主要语言;需要开发Web端,采用Vue.js进行开发，对文件进行预览，引入vue-pdf插件和vue-viewer插件对文件进行预览；搭建自己的gun节点，并将gun节点相互链接，最后搭建一个远端节点，并将其部署到远端服务器上，从而实现广域网文件的传输。引入客户端在本地搭建了Gun服务器，在启动客户端的时候进行部署；用户可以在客户端中自行开关服务器，只有服务器开启状态下上传下载才能成功。
+- File Selection for Preview: Only supports preview of PDF format and all image formats, with a file size limit of 10MB.
 
+#### 2. Flexibility
 
+Once the product is deployed, the following adjustments may be made based on user feedback, product testing, or technical updates:
 
-# 二、设计
+##### (1) Changes in the Operating Environment
 
-### （一）设计概要
+- The server is running on port 8765 locally. Please ensure that port 8765 is not occupied by any other process. The server can be accessed by visiting `localhost:8765` in the browser. The main development and debugging are done on the Windows platform. If time permits, support for the SUSE Linux server version will be synchronized.
 
-#### 1.网页端
+### (V) Problem Analysis Report
 
-  此次项目的网页端运用了Vue.js框架结合GunDB进行开发，Vue是轻量级的前端框架，它有很多独立的功能或库，我们可以根据选择进行扩展。GunDB是一个开源的去中心化数据库。节点之间彼此可以自由连接，形成新的连接单元。这样的设计模式很好保证了数据的安全和传输的高效。
-  在设计过程中，我们项目并没有将前后端进行分离，因为GunDB数据库可以通过NPM进行引入，同时也可以利用vue-gun插件将其更好地集成在Vue项目中。这样的设计模式会带来更高的耦合性，而且难以进行二次开发。但GunDB本身利用JavaScript进行编写，而且没有提供前后端连接的接口，如果在持续开发的过程中可以发现更好的设计模式，那么可以将其进行修改。现阶段其更像一个集成了存储功能的Vue项目，体现了“大前端”的思想。
-  在设计时候，我们也引入了一些第三方的库：比如ElementUI、Eslint代码检查工具、vue-pdf插件以支持pdf预览等，这些第三方的库能够更好地简化开发流程，使我们能更加关注核心功能以及界面的实现。
+#### 1. Problem Description:
 
-#### 2.客户端
+For situations where the network environment is unstable in different regions, a decentralized file sharing platform is needed to solve the file sharing scenario within the local area network (LAN). It requires the development of a web client and a desktop client. The web client should support file preview for certain file types and also provide file encryption. The desktop client should support file sharing within the LAN based on the web client.
 
-  客户端使用Electron对Vue项目进行打包封装，这样可以快速地进行项目移植，生成跨平台的应用程序。但是这样带来了一个弊端就是：难以控制文件体积。Electron的设计思想更像一个轻量级的浏览器，如果想要将其打包运行，会安装Vue项目下的所有依赖包以及Electron本身的Node.js环境，这样结合起来的安装项目已经超过150M，与之相比，Vue项目本身只有4M左右。
+#### 2. Problem Analysis:
 
-### （二）运行时结构
+This project requires the construction of a decentralized file sharing platform. GunDB is an open-source decentralized database that provides technical support for building the platform. The web client needs to be developed, requiring the selection of suitable programming languages and frameworks. File preview functionality will require the integration of relevant plugins. The desktop client needs to be built by packaging the web client. For file transfer in the wide area network, files need to be uploaded to a remote server. For file sharing within the LAN, files need to be uploaded to a local server within the LAN so that the desktop client can access files uploaded by other clients within the LAN for preview and download.
 
-#### 1.Web端结构
+#### 3. Solution:
 
-  本次web端的结构基本等同于一个Vue项目，其访问数据库的操作都直接在views文件下面，前端承担了几乎所有的工作，主要的目录结构如下：
+Use GunDB as the core technology to achieve decentralization. Choose JavaScript and HTML as the main languages based on the requirements. Develop the web client using Vue.js, and for file preview, integrate the vue-pdf and vue-viewer plugins. Set up a custom Gun node and connect Gun nodes to each other. Finally, set up a remote node and deploy it on a remote server to achieve file transfer in the wide area network. Introduce the desktop client, which sets up a local Gun server and deploys it when the client is started. Users can manually start or stop the server in the desktop client, and successful file upload and download can only occur when the server is running.
+
+
+
+# Design
+
+## (I) Design Overview
+
+### 1. Web Front-end
+
+The web front-end of this project is developed using the Vue.js framework combined with GunDB. Vue.js is a lightweight front-end framework that provides many independent features or libraries which can be extended based on choice. GunDB is an open-source decentralized database that allows nodes to freely connect with each other, forming new connection units. This design pattern ensures data security and efficient transmission.
+
+During the design process, we did not separate the front-end and back-end of our project because GunDB database can be imported through NPM and integrated into the Vue project using the vue-gun plugin. This design pattern introduces higher coupling and makes it difficult for further development. However, GunDB itself is written in JavaScript and does not provide an interface for front-end and back-end connection. If a better design pattern is discovered during continuous development, it can be modified accordingly. At this stage, it resembles a Vue project with integrated storage functionality, reflecting the concept of "frontend as a big part".
+
+In the design, we also incorporated some third-party libraries such as ElementUI, Eslint code checking tool, vue-pdf plugin for PDF preview support, etc. These third-party libraries simplify the development process, allowing us to focus more on core functionality and interface implementation.
+
+### 2. Client-side
+
+The client-side utilizes Electron to package and encapsulate the Vue project, enabling quick project portability and generating cross-platform applications. However, this approach has a downside: it is difficult to control the file size. Electron's design philosophy is more like a lightweight browser. To package and run it, all the dependencies of the Vue project and the Node.js environment of Electron itself need to be installed. As a result, the installation size of the combined project exceeds 150MB, while the Vue project itself is only around 4MB.
+
+## (II) Runtime Structure
+
+### 1. Web Structure
+
+The web structure in this case is essentially the same as a Vue project. The database operations are directly performed in the views folder, and the front-end handles almost all the work. The main directory structure is as follows:
 
 ![1web.png](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596122938899-4f482be7-323a-46bf-9c3e-2616f3dc186a.png#align=left&display=inline&height=619&originHeight=619&originWidth=344&size=22975&status=done&style=none&width=344)
 
-       其中在views文件夹下面的Download、Upload以及Team分别对应三个页面，在Components文件夹下面的对应用到的组件进行了封装等，同时我们引入了单元测试、GitLab流水线等对项目进行检查。这些自动化测试工具的引入，大大简化了我们代码的测试工作，能使我们更加专注于开发。
+Under the views folder, the Download, Upload, and Team correspond to three pages. The components used are encapsulated in the Components folder. Additionally, we introduced unit testing, GitLab pipelines, and other tools to check the project. The introduction of these automated testing tools greatly simplifies our code testing work and allows us to focus more on development.
 
-#### 2.模块设计
+#### 2. Module Design
 
 - Upload
-  对应上传界面，其功能包括文件的获取、切分、上传、存储，可以说是本次项目的核心之一，其通过Vue-Gun插件对Gun数据库进行初始化并连接后台数据库，通过在前端利用JavaScript直接操作文件元素，包括编码、拆分、存储等，可以说一个页面完成了它对应的所有功能
+  The Upload page is responsible for file retrieval, splitting, uploading, and storage. It is one of the core functionalities of this project. It initializes the Gun database and connects to the backend database using the Vue-Gun plugin. By directly manipulating file elements in the front-end using JavaScript, it performs encoding, splitting, and storage. Essentially, this page encompasses all the required functionalities.
+
 - Download
-  对应下载界面，其功能包括文件的下载、合并、预览等。通过与数据库通信，可以达到URL解析、文件密码验证、文件下载等功能。
+  The Download page allows users to download, merge, and preview files. It communicates with the database to support URL parsing, file password validation, and file downloading.
+
 - Team
-  团队介绍页面，主要介绍开发团队。上传和下载界面通过URL进行连接，用户上传文件后，会获取到一个URL，这个URL包含一个唯一的PageID，而下载界面获取到PageID后会进行解析，判断该PageID所包含的所有信息（包括密码、文件名、文件创建有效期等）
-- 组件设计
+  The Team page provides information about the development team. The Upload and Download pages are connected through URLs. After a user uploads a file, they receive a unique URL containing a PageID. The Download page uses this PageID to parse and retrieve information such as password, file name, and file expiration date.
 
-  ①GunPanel
+- Component Design
 
-  在开发过程中，将一些组件拿出来单独进行封装，主页面的面板就单独封装成一个自己的面板，并加上了动画效果。上传和下载的页面的面板都使用了component下面的GunPanel组件，其对响应式页面进行了封装，可以保证代码的模块化
+  ① GunPanel
+  During the development process, some components were extracted and encapsulated separately. The main panel of the main page is encapsulated into its own component with added animation effects. The panels on the Upload and Download pages use the GunPanel component from the "components" folder. It encapsulates responsive pages and ensures code modularity.
 
-![封装动态效果.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596079525580-97825c2d-7600-41ee-8b86-216f19117994.gif#align=left&display=inline&height=1083&originHeight=1083&originWidth=1601&size=3186935&status=done&style=none&width=1601)
+  ② Linkbox
+  This component generates file links and includes two buttons and a link box. Its parent component is the Upload page, which passes the link value to the child component to dynamically generate file links. The file link consists of the current browser address + "/#/download/" in the front and a 32-character random string representing the unique pageID at the end. For example: [http://localhost:8080/#/download/](http://localhost:8080/#/download/) stbQbtAkShwByykCc6FFX2ifBCbwhQfp. This allows file access using the pageID. In the Download page, the pageID is received and processed.
 
-  ②Linkbox
+  ③ previewImage
+  This component is used for online image preview and is implemented using the vue-viewer plugin. It includes a "Close Preview" button, and its parent component is the Download page. The URL of the image to be previewed is passed from the parent component to the child component. The child component initially displays the image as a thumbnail. Clicking the image enables zooming and other operations. After previewing the image, clicking the "Close" button triggers an event in the child component, which calls the parent component's event to hide this component.
 
-  这个组件是生成文件链接的组件，包括两个按钮和一个链接框，父组件是上传界面，可以通过父组件传递链接值到子组件，然后动态生成文件链接。文件链接的组成比较简单，前半部分是当前浏览器地址+/#/download/，后半部分是一个32位随机字符串，代表每一个页面独特的pageID：
-[http://localhost:8080/#/download/](http://localhost:8080/#/download/) stbQbtAkShwByykCc6FFX2ifBCbwhQfp这样便能通过pageID对文件进行访问，在下载界面通过接受pageID
+  ④ previewPdf
+  This component is used for online PDF preview and is implemented using the vue-pdf plugin. It includes "Previous Page," "Next Page," and "Cancel" buttons, and its parent component is the Download page. The URL of the PDF file to be previewed is passed from the parent component to the child component. The child component previews the file online, and clicking "Previous Page" or "Next Page" enables page navigation. After previewing the PDF, clicking the "Cancel" button triggers an event in the child component, which calls the parent component's event to hide this component.
 
-![链接框.png](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596079573605-7888373f-649a-4e1b-b4a3-6239ede2a935.png#align=left&display=inline&height=175&originHeight=175&originWidth=799&size=12908&status=done&style=none&width=799)
 
+  #### 3. Client Structure
 
-  ③previewImage
+The client in this project is built on the foundation of the web platform using Electron. The overall project structure is similar to the web platform. The main directory structure includes the client configuration file `background.js` and the packaging configuration file `vue.config.js`. The project structure is as follows:
 
-    这个组件是在线预览图片的组件，实质上是借助vue-viewer插件实现图片预览。包括一个“关闭预览”的按钮，其父组件是下载界面。需要预览的图片url从父组件传入子组件，子组件接收到url后首先以缩略图形式预览，点击图片可以对图片进行放大缩小等操作。预览图片结束后，可以点击关闭按钮，触发子组件事件，从而调用父组件事件将此组件在父组件隐藏。
-![预览图片.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596080695619-90776497-a287-403a-b71c-8eedf6ee91e4.gif#align=left&display=inline&height=916&originHeight=916&originWidth=1819&size=5108767&status=done&style=none&width=1819)
+![Design Work Directory.png](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596079458087-c329503d-9c6d-4882-9b1e-49689fe72bbd.png#align=left&display=inline&height=913&originHeight=913&originWidth=303&size=37865&status=done&style=none&width=303)
 
-  ④previewPdf
-       这个组件是在线预览PDF的组件，实质上是借助vue-pdf插件实现PDF预览。包括一个“上一页”、“下一页”、“取消”的按钮，其父组件是下载界面。需要预览的PDF文件url从父组件传入子组件，子组件接收到url后对文件进行在线预览，点击上一页、下一页可以读文件进行操作。预览PDF结束后，可以点击“取消”按钮，触发子组件事件，从而调用父组件事件将此组件在父组件隐藏。
 
-![PDF.gif](https://cdn.nlark.com/yuque/0/2020/gif/2142105/1596080827586-9602bd94-52bf-4257-9bdb-ec8503ffa396.gif#align=left&display=inline&height=910&originHeight=910&originWidth=1819&size=2191370&status=done&style=none&width=1819)
-#### 
-#### 3.客户端结构
+# III. Testing
 
-        本次客户端在Web端的基础上使用Electron搭建，总体项目结构与Web端基本相同。主要目录结构是在Web端的基础上增加了客户端的配置文件background.js以及打包客户端的配置文件vue.config.js。项目结构如下：
-![设计工作目录.png](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596079458087-c329503d-9c6d-4882-9b1e-49689fe72bbd.png#align=left&display=inline&height=913&originHeight=913&originWidth=303&size=37865&status=done&style=none&width=303)
+## (I) Testing Strategy
 
+### 1. Types of Testing and Testing Framework
 
-# 三、测试
+Currently, the project primarily uses unit testing as the testing type, with Jest as the testing framework. We also utilize Vue's accompanying testing tool, vue-test-utils. Additionally, we have added ad-hoc simple end-to-end (e2e) testing using Nightwatch as the automation testing framework. To use Nightwatch, we installed the @vue/e2e-nightwatch plugin, which is compatible with our Vue project.
 
-## （一）测试策略
+### 2. Testing Environment
 
-### （1）测试种类及测试框架
+The testing environment is the same as the software development environment and requires npm and Vue dependencies to be installed.
 
-  目前我们的项目主要采用的测试种类为单元测试，所使用的测试框架为Jest，同时使用了Vue的配套测试工具vue-test-unils。同时，我们增加了计划外的简易e2e测试，所使用的自动化测试框架为Nightwatch，为使用Nightwatch我们在项目中安装了与Vue项目适配的插件@vue/e2e-nightwatch。
+### 3. Testing Objectives
 
-### （2）测试环境
+The testing objective of our team is to test the JavaScript functions in the web platform under predetermined conditions to verify if they achieve the desired effects. This will facilitate further development and improvement. We also conduct partial visual testing and page interaction testing to predict if the program can correctly fulfill the corresponding requests in actual environments. Additionally, the subsequent inclusion of e2e testing simulates real user scenarios and tests the robustness of our project's code in real environments.
 
-  测试的运行环境与软件的开发环境相同，需要装npm、vue依赖。
+### 4. Testing Metrics
 
-### （3）测试目的
+Currently, our testing metrics primarily include the number of tested functions and the pass rate. Due to the involvement of GunDB-related functions and methods in the project, which conflict with the current testing tools and frameworks, we encountered exceptions that we are currently unable to resolve solely with our existing capabilities. Therefore, we cannot conduct effective testing evaluations based on typical test coverage and overall pass rates. As an alternative, we focus on the test coverage and pass rate of functions unrelated to GunDB and PDF.
 
-  我们组测试的测试目的是在已经规定好的条件下对web端的js函数进行测试，看其是否能实现我们所需要的效果，以便于之后的进一步的开发和改进。同时进行一部分的视觉测试及页面交互测试，预测程序是否能在实际环境下正确完成相应的请求。同时，随后加入的e2e测试模拟真实用户使用时的情况，能更加考验我们的项目在实际环境下的代码健壮性。
+## (II) Test Report
 
-### （4）测试指标
+We have completed the testing of the main components and partially tested the functions of some views components. The current test report is as follows (continuously updated):
 
-  目前我们的测试指标主要为测试函数个数及通过率。由于项目内容涉及Gundb的相关函数及方法，而其又与目前的测试工具及框架有冲突存在，导致测试时出现仅凭我们目前能力无法解决的异常，所以我们无法通过通常的测试覆盖率及全局通过率进行一个有效的测试评估，退而求其次将标准转换为不涉及Gundb及PDF的相关函数的测试率及通过率。
+![Test.png](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596080904354-44bc3191-e2a2-48ba-b54a-53ae8538ff92.png#align=left&display=inline&height=400&originHeight=400&originWidth=930&size=43752&status=done&style=none&width=930)
 
-## （二）测试报告
 
-  目前基本完成了主要components组件的测试，以及部分views组件部分函数的测试。目前测试报告如下（持续更新中）：
+## IV. Summary
 
-![测试.png](https://cdn.nlark.com/yuque/0/2020/png/2142105/1596080904354-44bc3191-e2a2-48ba-b54a-53ae8538ff92.png#align=left&display=inline&height=400&originHeight=400&originWidth=930&size=43752&status=done&style=none&width=930)
+### (I) Problems and Solutions
 
+#### 1. Problem One
 
-# 四、总结
+##### (1) Ideal: When file upload fails, the file should not be updated in gundb and the upload list.
+##### (2) Problem: The file still exists in the upload list.
+##### (3) Solution: Manually modify and call the built-in delete function `handleRemove` in `el-upload` to remove the failed file from the upload list and delete the corresponding file node in gundb.
 
-## （一）问题与做法
+#### 2. Problem Two
 
-### 1、问题一
+##### (1) Ideal: Web content should adapt to window changes.
+##### (2) Problem: Text layout becomes chaotic when the window is resized.
+##### (3) Solution: Implement responsive layout, use a different interface style to dynamically adapt to the interface changes when the interface is scaled down to a certain extent.
 
-#### （1）理想：文件上传失败时文件不会更新到gundb和上传列表中
+#### 3. Problem Three
 
-#### （2）问题：上传列表中文件依然存在
+##### (1) Ideal: Download file list should be within the background box.
+##### (2) Problem: When the file name is too long, the list exceeds the background box and the background box size flickers.
+##### (3) Solution: Monitor the browser window size, shrink the width of the file list by changing its style when the window is scaled down to a certain extent; when the file list exceeds a specified length, replace the excess part with an ellipsis (...) to control the length of the list.
 
-#### （3）解决：手动修改并调用el-upload内置的删除函数handleRemove，删除上传列表中上传失败的文件并将gundb中响应的文件结点删除
+#### 4. Problem Four
 
-### 2、问题二
+##### (1) Ideal: Uploading duplicate files should not be allowed.
+##### (2) Problem: Duplicate files can be uploaded.
+##### (3) Solution: When uploading a file, traverse the nodes to check if there is a file with the same name in the current file list. If it exists, call `handleRemove` to delete the uploaded file with the same name.
 
-#### （1）理想：网页内容适应窗口变化
+#### 5. Problem Five
 
-#### （2）问题：当窗口缩小时文字布局混乱
+##### (1) Ideal: Display a single prompt when file upload fails.
+##### (2) Problem: During chunked upload, each failed chunk prompts a failure.
+##### (3) Solution: Declare a variable to indicate whether the file has already failed to upload. If the prompt has been shown, subsequent failures will not prompt again. Use the variable to determine that if the file has already failed to upload, subsequent successful chunk uploads will not prompt, and the overall upload will not succeed.
 
-#### （3）解决：实现响应式布局，当界面缩小到一定程度时采用另一种界面style以动态适应界面变化
+#### 6. Problem Six
 
-### 3、问题三
+##### (1) Ideal: The download page can be accessed based on a randomly generated ID.
+##### (2) Problem: After refreshing the download page, the link is not found.
+##### (3) Solution: Instead of projecting all routes to the download page for unified judgment, which causes confusion in browser route navigation, project `/download/:id` to the download page. Only generated routes can be redirected to the download page, resolving the contradiction in route navigation.
 
-#### （1）理想：下载文件列表在背景框内
+#### 7. Problem Seven
 
-#### （2）问题：当文件名超长时列表超出背景框且出现背景框大小闪烁的问题
+##### (1) Ideal: Test files can automatically import the tested components and their referenced components.
+##### (2) Problem: Imported components are shown as non-existent.
+##### (3) Solution: Need to import the required referenced components at the beginning of the test file and register them in the global `localVue`. When creating the wrapper, include `localVue`.
 
-#### （3）解决：监控浏览器窗口大小，当窗口缩小到一定程度时文件列表更换style缩小其宽度；当文件列表超出指定长度时多余部分用省略号代替，以控制列表长度
+#### 8. Problem Eight
 
-### 4、问题四
+##### (1) Ideal: Simulate testing of Date class functions using pre-set timestamps.
+##### (2) Problem: Different local time zones directly affect the test results.
+##### (3) Solution: After setting the timestamp, an additional Date object should be obtained to determine the appropriate test data based on the system's local time.
 
-#### （1）理想：不允许上传重复文件
+#### 9. Problem Nine
 
-#### （2）问题：可以上传重复文件
+##### (1) Ideal: All common JavaScript functions can be tested using Jest.
+##### (2) Problem: Some functions cannot be parsed by the Jest framework.
+##### (3) Solution: Create mock functions to replace the original functions and simulate return values (known return value scenarios) to allow the program to continue running and check the code logic.
 
-#### （3）解决：在上传文件时遍历结点查找当前文件列表中是否存在同名文件，存在则调用handleRemove删除已上传的重名文件
+#### 10. Problem Ten
 
-### 5、问题五
+##### (1) Ideal: Users can freely enable and disable the local server in the client.
+##### (2) Problem: It is difficult to deploy the server locally.
+##### (3) Solution: Use the node.js environment of Electron to automatically install the Gun server using a script, and control the server's on/off state with a script.
 
-#### （1）理想：文件上传失败给出一次提示
+#### 11. Problem Eleven
 
-#### （2）问题：切片上传中每个分块失败均会提示一次上传失败
+##### (1) Ideal: Users can customize the installation path when installing the client.
+##### (2) Problem: The client is installed with default configurations.
+##### (3) Solution: No relevant configuration files were found. After investigation, it was discovered that this version does not come with built-in configuration files and requires users to create their own. Therefore, create a configuration file in the project and write the required configurations into that file.
 
-#### （3）解决：声明变量表示文件是否已经上传失败，若已经提示过则之后的失败均不会提示，同时用该变量判断若已经上传失败则之后切片上传成功也不会提示，且整体不会成功上传
+### 12. Problem Twelve
 
-### 6、问题六
+#### (1) Ideal: Users can automatically connect to servers on the local network.
 
-#### （1）理想：根据随机生成的ID组成的路由可以访问下载界面
+#### (2) Problem: The client cannot find local network servers.
 
-#### （2）问题：下载界面刷新后显示链接不存在
+#### (3) Solution: Utilize the features of Gun itself. Use a script to find the IP addresses within the local network and add them to the local Gun server. Determine whether to connect to a specific node by checking if a Gun server is set up on those IP addresses.
 
-#### （3）解决：原先采用的将所有路由投影到下载界面统一进行判断，经测试，会造成浏览器路由跳转混乱，因此改用将/download/:id投影到下载界面，仅生成的路由可以跳转到下载界面，解决了路由跳转的矛盾
+### 13. Problem Thirteen
 
-### 7、问题七
+#### (1) Ideal: Use Gun database to insert and update data.
 
-#### （1）理想：测试文件可以默认将被测组件及其所引用组件一齐引入
+#### (2) Problem: Following the official Gun documentation for insertion often leads to failures, with lacking descriptions of details, resulting in a trial-and-error approach.
 
-#### （2）问题：引入组件显示不存在
+#### (3) Solution: Through practice and inquiries, a method was developed to ensure efficient insertion and updating of file data, successfully implementing file chunking and merging.
 
-#### （3）解决：需在测试文件开头引入所需引用组件，并设置全局localVue注册，在创建包裹器时将localVue引入即可
+### 14. Problem Fourteen
 
-### 8、问题八
+#### (1) Ideal: Use Gun's asynchronous callback functions to achieve certain functionalities.
 
-#### （1）理想：使用设定好的时间戳可以直接对Date类函数进行模拟测试
+#### (2) Problem: Gun database's callback functions should be asynchronous, meaning that when sending an insertion or deletion request, it takes some time to receive and invoke the request without blocking. The biggest challenge with asynchronous callbacks is the inability to receive timely feedback during certain validations (e.g., querying passwords, checking file existence), and the inability to block in programs with strict sequential order (e.g., file chunking that must strictly follow the insertion order).
 
-#### （2）问题：不同的本地时区会直接影响测试结果
+#### (3) Solution: A blocking method for asynchronous callbacks has not been explored yet. As a last resort, buffering was implemented using timing functions in consecutive insertions. Additionally, the insertion was changed from an array format to key-value pairs for updating file objects. Validation functions were placed within Gun's callback functions to ensure that the program continues running only after the callback functions are executed.
 
-#### （3）解决：设定时间戳后应当额外获取一个Date对象决定，依系统本地时间获取适合的测试数据
+### 15. Problem Fifteen
 
-### 九、问题九
+#### (1) Ideal: Properly use Gun according to the official documentation.
 
-#### （1）理想：所有常见的js函数都可以经由jest进行测试
+#### (2) Problem: Gun sometimes produces inexplicable error messages. Gun database determines the success or failure of data insertion through callback functions. However, through practice, even if an insertion fails (i.e., the callback function encounters an error), the data of the file itself remains unaffected and can still be accessed and downloaded correctly. The challenge lies in the inability to determine when an insertion has failed.
 
-#### （2）问题：部分函数jest框架并不能解析
+#### (3) Solution: This problem has not been resolved yet. Instead, the approach was to give up on determining the success or failure of an insertion. Through practical experience, even if all insertions result in errors, the database still retains the correct file information, allowing for successful uploads and downloads.
 
-#### （3）解决：创建mock函数代替原函数，并伪造返回值（已知返回值情况下）以便程序继续运行检查代码逻辑
 
-### 10、问题十
 
-#### （1）理想：用户在客户端可以自由开启和关闭本地服务器
+# 5. Additional Information
 
-#### （2）问题：服务器难以在本地部署
+## 1. GunDB
 
-#### （3）解决：使用electron的nodejs环境，用脚本运行Gun服务器的自动安装，同时用脚本控制服务器的开关。
+GunDB is an open-source decentralized database. It focuses on storing, loading, and sharing data in applications without the need to worry about servers, network calls, databases, or tracking offline changes or concurrent conflicts. For more details, please refer to the [Gun official documentation](https://gun.eco/docs/Todo-Dapp).
 
-### 11、问题十一
+## 2. Decentralization
 
-#### （1）理想：用户安装客户端可以自定义安装路径
+In a system with numerous nodes, each node has a high level of autonomy. Nodes can freely connect with each other to form new connectivity units. Any node can become a temporary center but does not possess mandatory central control. The influence between nodes forms nonlinear causal relationships through the network. Decentralization does not mean the absence of a center but allows nodes to freely choose and determine centers. In simple terms, centralization means the center determines the nodes. Nodes must depend on the center, and they cannot survive without it. In a decentralized system, anyone can be a node, and anyone can become a center. No center is permanent, but rather temporary, and no center has authority over nodes.
 
-#### （2）问题：客户端会按照默认配置一键安装
+## 3. GunDB provides excellent offline work support for users with poor network conditions
 
-#### （3）解决：未发现相关配置文件，经查询发现此版本将配置文件并不是自带的，而是需要自己建立。所以在项目中建立配置文件，将需要的配置写入该文件中即可。
+When a browser requests data, it first merges the response with its own data and caches the result. The next request will receive an immediate response, including offline operation. If the server fails, data can still be recovered from the browser.
 
-### 12、问题十二
+## 4. Base64 encoding is one of the most common encoding methods used for transmitting 8-bit byte code on the internet
 
-#### （1）理想：用户可以自动连接局域网内的服务器
+For more details, please refer to the [detailed introduction of base64](https://baike.so.com/doc/5126695-5356001.html).
 
-#### （2）问题：客户端无法找到局域网服务器
+## 5. Vue.js framework is a progressive JavaScript framework for building user interfaces.
 
-####  （3）解决：运用Gun本身的特性，通过脚本找到局域网内的ip，并将其添加到本地的Gun服务器中，通过判断这些ip地址下有没有搭建Gun服务器来确定是否要连接上此节点。
+Unlike other large frameworks, Vue is designed to be incrementally adoptable. The core library of Vue focuses only on the view layer, making it easy to integrate with third-party libraries or existing projects. For more details, please refer to the [detailed introduction of Vue.js](https://baike.so.com/doc/25404384-26428381.html).
 
-### 13、问题十三
+## 6. Code Variable Naming Convention
 
-#### （1）理想：使用Gun数据库插入以及更新数据
+### (1) Class names should be hyphen-separated.
 
-#### （2）问题：根据Gun的官方文档进行插入，有很多时候插入失败，而且细节等欠缺描述，最后只能自己摸索
+### (2) Method names should be camel-cased.
 
-#### （3）解决：最后在实践以及询问中，摸索出了一个确保高效插入和更新文件数据的方法，并成功实现文件分块和合并
-
-### 14、问题十四
-
-#### （1）理想：使用Gun异步回调函数实现一些功能
-
-#### （2）问题：Gun数据库的回调函数应该是异步的，也就是说发送插入或者删除请求，需要一定时间才能收到请求，调用函数，而且期间无法阻塞。异步回调带来的最大困扰就是在一些验证上（比如查询密码、查询文件是否存在）无法及时得到反馈而且在一些具有严格先后顺序的程序中（比如文件分块，必须严格遵守先插入顺序），无法阻塞。
-
-#### （3）解决：至今仍然未探索出使其阻塞的方法，最后不得已在连续的插入中使用计时函数进行缓冲，同时放弃以数组的形式进行插入，而是使用键值对进行文件对象的更新。同时将验证函数放在Gun的回调函数之内，确保回调函数执行后，程序才能继续运行。
-### 15、问题十五
-
-#### （1）理想：按照官方文档正确使用Gun
-
-#### （2）问题：Gun中有时候会有莫名的报错信息，Gun数据库通过回调函数来判断数据是否成功插入或者失败插入，但是经过实践：即使插入失败，也就是回调函数出现错误，文件本身的数据也没有受到任何的影响，仍然可以正确获取和下载。这样带来的困扰就是根本无法判断它什么时候插入失败。
-
-#### （3）解决：最终还未解决这个问题，反而是直接放弃判断插入是否成功或失败。因为经过实践，数据插入的过程中，即使全部报错，最终体现在数据库的仍然是正确的文件信息，可以正确上传和下载。
-
-## （二）总结与沉淀
-        本次的项目是一个特殊的开源项目， 此项目核心技术是Gun，Gun是一个实时的、分布式的、离线优先的图形数据库引擎，同时也是一项较为新兴和较少人使用的技术。而且由于其比较小众，可供学习的文档基本只有官方的文档，在网络上资料匮乏的情况下，需要从一无所知到熟练操作，考验的是我们应对问题的解决方法以及学习能力。第一次接触开源社区，第一次接触图形数据库，第一次进行项目测试，第一次使用Electron作为搭建客户端工具，让一个项目变成了可以在电脑上安装的软件。
-        在开发过程中遇到了许多困难，无论是在建立服务器、进行测试还是实现核心功能等方面，大家都是花了不少功夫才解决。这是第一次大家真正意义上的团队合作，从之前的各自埋头苦干到后面交流合作，使工作效率提高了很多。每周的小组展示对我们帮助很大，我们看见了别的小组的不足和优点，对比我们小组，促使我们更好的开发项目，同时也会和和别的小组进行一些方法的探讨。小组成员之间互相交流，明确任务分配，每天晚上固定时间开会，汇报工作进度，疑难问题探讨，合力攻破难关。在这些过程中，我们学会了怎样更好的团结协作。
-       在真正接触到开源项目和开源社区之后，我们也对软件技术开发以及开源世界有了更加深刻的了解。同时，在寻找解决方法的过程中，由于没有过多资料以及其他人的经验，我们只能在实践中进行验证，在摸索中成长，也在某种意义上契合了我们“实训”的目的。总之，最后我们能做出来一个相对完整的项目，尽管它不完美，但已经足够证明我们的努力与汗水。
-
-
-
-# 五、附加信息
-
-## 1.GunDB
-
-  GunDB 是一个开源的去中心化数据库。其着重关心需要在应用程序中存储、加载和共享的数据，而不必担心服务器、网络呼叫、数据库或跟踪脱机更改或并发冲突。更多细节请查阅[Gun官方文档](https://gun.eco/docs/Todo-Dapp)
-
-## 2.去中心化
-
-  在一个分布有众多节点的系统中，每个节点都具有高度自治的特征。节点之间彼此可以自由连接，形成新的连接单元。任何一个节点都可能成为阶段性的中心，但不具备强制性的中心控制功能。节点与节点之间的影响，会通过网络而形成非线性因果关系。去中心化，不是不要中心，而是由节点来自由选择中心、自由决定中心。简单地说，中心化的意思，是中心决定节点。节点必须依赖中心，节点离开了中心就无法生存。在去中心化系统中，任何人都是一个节点，任何人也都可以成为一个中心。任何中心都不是永久的，而是阶段性的，任何中心对节点都不具有强制性。
-
-## 3.GunDB 对网络状况不佳的用户有非常良好的脱机工作支持
-
-  浏览器请求数据会先合并答复与自己的数据，并缓存结果，下次请求时会即时答复（包括脱机运行），若服务器故障，仍可以从浏览器中恢复数据。
-
-## 4.base64 码是网络上最常见的用于传输8Bit字节代码的编码方式之一
-
-具体细节可以参照[base64详细介绍](https://baike.so.com/doc/5126695-5356001.html)
-
-## 5.Vue.js框架是一套用于构建用户界面的渐进式JavaScript框架。
-
-  与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，方便与第三方库或既有项目整合。具体细节可以参照[Vue.js详细介绍](https://baike.so.com/doc/25404384-26428381.html)
-
-## 6.代码变量命名规定
-
-### （1）类名使用中划线进行命名
-
-### （2）方法名使用小驼峰进行命名
-
-## 7.引入eslint对代码风格进行检查
+## 7. Code style checking with ESLint is introduced.
